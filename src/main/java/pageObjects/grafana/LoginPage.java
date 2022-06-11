@@ -11,9 +11,9 @@ public class LoginPage {
     @FindBy(how = How.NAME, using = "password")
     public WebElement txt_password;
 
-    @FindBy(how = How.CSS, using = "btn[type='submit']")
+    @FindBy(how = How.CSS, using = "button[type='submit']")
     public WebElement btn_login ;
 
-    @FindBy(how = How.PARTIAL_LINK_TEXT, using = "Skip")
+    @FindBy(how = How.CLASS_NAME, using = "css-1kf0ycc-button")
     public WebElement btn_skip;
 }

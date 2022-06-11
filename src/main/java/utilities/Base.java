@@ -8,5 +8,6 @@ public class Base {
     protected static WebDriver driver;
 
     protected static pageObjects.grafana.LoginPage grafanaLogin;
+    protected static pageObjects.grafana.MainPage grafanaMain;
 
 }

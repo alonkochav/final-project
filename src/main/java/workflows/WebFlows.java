@@ -1,7 +1,9 @@
 package workflows;
 
-import com.google.common.util.concurrent.Uninterruptibles;
 import extensions.UIActions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonOps;
 
 import java.util.concurrent.TimeUnit;
@@ -13,7 +15,6 @@ public class WebFlows extends CommonOps {
         UIActions.updateText(grafanaLogin.txt_username, user);
         UIActions.updateText(grafanaLogin.txt_password, pass);
         UIActions.click(grafanaLogin.btn_login);
-        Uninterruptibles.sleepUninterruptibly(500, TimeUnit.MILLISECONDS);
         UIActions.click(grafanaLogin.btn_skip);
     }
 }
