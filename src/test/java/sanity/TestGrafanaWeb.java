@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import utilities.CommonOps;
 import workflows.WebFlows;
 
-public class GrafanaWebTest extends CommonOps {
+    public class TestGrafanaWeb extends CommonOps {
 
     @Test
     public void test01_verifyHeader(){
