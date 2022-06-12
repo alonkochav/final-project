@@ -9,6 +9,6 @@ public class ManagePages extends Base{
         grafanaMain = PageFactory.initElements(driver, pageObjects.grafana.MainPage.class);
         grafanaLeftMenu = PageFactory.initElements(driver, pageObjects.grafana.LeftMenuPage.class);
         grafanaServerAdmin = PageFactory.initElements(driver,pageObjects.grafana.ServerAdminPage.class);
+//      grafanaUsers = PageFactory.initElements(driver,pageObjects.grafana.UsersPage.class);
     }
-
 }

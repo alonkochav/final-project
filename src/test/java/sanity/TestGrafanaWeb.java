@@ -12,4 +12,9 @@ import workflows.WebFlows;
         WebFlows.login("admin", "admin");
         Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
     }
+
+    @Test
+    public void test02_verifyOneUser() {
+        WebFlows.openUsersPage();
+    }
 }
