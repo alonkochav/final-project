@@ -10,5 +10,10 @@ public class Base {
     protected static WebDriverWait wait;
     protected static pageObjects.grafana.LoginPage grafanaLogin;
     protected static pageObjects.grafana.MainPage grafanaMain;
+    protected static pageObjects.grafana.LeftMenuPage grafanaLeftMenu;
+    protected static pageObjects.grafana.ServerAdminPage grafanaServerAdmin;
+
+
+
 
 }
