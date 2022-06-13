@@ -14,7 +14,8 @@ import workflows.WebFlows;
     }
 
     @Test
-    public void test02_verifyOneUser() {
-        WebFlows.openUsersPage();
+    public void test02_verifyDefaultUsers() {
+        WebFlows.countUsers();
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
     }
 }

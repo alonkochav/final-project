@@ -14,7 +14,7 @@ public class Base {
     protected static pageObjects.grafana.LoginPage grafanaLogin;
     protected static pageObjects.grafana.MainPage grafanaMain;
     protected static pageObjects.grafana.LeftMenuPage grafanaLeftMenu;
-    protected static pageObjects.grafana.ServerAdminPage grafanaServerAdmin;
-//    protected static pageObjects.grafana.UsersPage grafanaUsers;
+    protected static pageObjects.grafana.ServerAdminMenuPage grafanaServerAdmin;
+    protected static pageObjects.grafana.ServerAdminMainPage grafanaServerAdminMain;
 
 }

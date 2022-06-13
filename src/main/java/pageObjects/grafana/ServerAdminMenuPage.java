@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class ServerAdminPage extends LeftMenuPage {
+public class ServerAdminMenuPage extends LeftMenuPage {
 //    @FindBy(how = How.ID, using = "navbar-menu-portal-container")
 //    public WebElement link_navbar;
 
