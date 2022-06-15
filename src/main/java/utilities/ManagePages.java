@@ -1,8 +1,6 @@
 package utilities;
 
 import org.openqa.selenium.support.PageFactory;
-import pageObjects.grafana.ServerAdminMainPage;
-import pageObjects.grafana.ServerAdminMenuPage;
 
 public class ManagePages extends Base{
 
@@ -10,7 +8,9 @@ public class ManagePages extends Base{
         grafanaLogin = PageFactory.initElements(driver, pageObjects.grafana.LoginPage.class);
         grafanaMain = PageFactory.initElements(driver, pageObjects.grafana.MainPage.class);
         grafanaLeftMenu = PageFactory.initElements(driver, pageObjects.grafana.LeftMenuPage.class);
-        grafanaServerAdmin = PageFactory.initElements(driver, ServerAdminMenuPage.class);
-        grafanaServerAdminMain = PageFactory.initElements(driver, ServerAdminMainPage.class);
+        grafanaServerAdmin = PageFactory.initElements(driver, pageObjects.grafana.ServerAdminMenuPage.class);
+        grafanaServerAdminMain = PageFactory.initElements(driver, pageObjects.grafana.ServerAdminMainPage.class);
+        grafanaAddNewUser = PageFactory.initElements(driver, pageObjects.grafana.AddNewUserPage.class);
+        grafanaEditUser = PageFactory.initElements(driver, pageObjects.grafana.EditUserPage.class);
     }
 }

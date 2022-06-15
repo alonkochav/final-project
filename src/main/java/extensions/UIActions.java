@@ -9,6 +9,7 @@ public class UIActions extends CommonOps {
 
     // Step("click")
     public static void click(WebElement elem){
+        wait.until(ExpectedConditions.visibilityOf(elem));
         wait.until(ExpectedConditions.elementToBeClickable(elem));
         elem.click();
     }
