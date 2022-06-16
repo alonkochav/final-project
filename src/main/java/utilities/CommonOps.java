@@ -12,6 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
+import workflows.WebFlows;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +36,7 @@ public class CommonOps extends Base {
         driver.get("http://localhost:3000/");
         ManagePages.initGrafana();
         action = new Actions(driver);
+        softAssert = new SoftAssert();
     }
 
     public static WebDriver initChromeDriver() {
@@ -63,6 +67,11 @@ public class CommonOps extends Base {
         else
             throw new RuntimeException("Invalid platform name");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    }
+
+    @BeforeMethod
+    public void beforeMethod(){
+        driver.get("localhost:3000");
     }
 
     @AfterMethod

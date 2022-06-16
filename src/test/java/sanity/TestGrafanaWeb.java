@@ -1,14 +1,9 @@
 package sanity;
 
-import com.google.common.util.concurrent.Uninterruptibles;
-import extensions.UIActions;
 import extensions.Verifications;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import utilities.CommonOps;
 import workflows.WebFlows;
-
-import java.util.concurrent.TimeUnit;
 
 public class TestGrafanaWeb extends CommonOps {
 
@@ -21,20 +16,30 @@ public class TestGrafanaWeb extends CommonOps {
     @Test
     public void test02_verifyDefaultUsers(){
         WebFlows.showUsers();
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
     }
 
     @Test
     public void test03_verifyNewUser(){
-        WebFlows.createNewUser("Alon Kochav", "alonkochav@gmail.com", "alonkochav", "admin");
+
+        WebFlows.createNewUser("Digital", "digital@web.com", "digiweb", "12345678");
+        WebFlows.showUsers();
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
+        WebFlows.createNewUser("Grafana", "grafana@boo.com", "grafana", "12345678");
+        WebFlows.showUsers();
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,3);
+    }
+
+    @Test
+    public void test04_verifyUserDeletion(){
+        WebFlows.deleteLastUser();
         WebFlows.showUsers();
         Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
     }
 
     @Test
-    public void test04_verifyUserDeletion(){
-        WebFlows.showUsers();
-        WebFlows.deleteLastUser();
-        Verifications.verifyUserDeletion(grafanaServerAdminMain.rows,1);
+    public void test05_verifyprogressSteps(){
+            System.out.println(grafanaMain.list_progressSteps);
+        Verifications.visibilityOfElements(grafanaMain.list_progressSteps);
     }
 }

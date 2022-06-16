@@ -15,13 +15,17 @@ public class Verifications extends CommonOps {
     }
 
     public static void numberOfElements(List<WebElement> elems, int expected){
-
         wait.until(ExpectedConditions.visibilityOf(elems.get(elems.size()-1)));
         assertEquals(elems.size(),expected);
     }
 
-    public static void verifyUserDeletion(List<WebElement> elems, int expected){
-        wait.until(ExpectedConditions.visibilityOf(elems.get(0)));
-        assertEquals(elems.size(),expected);
+    public static void visibilityOfElements(List<WebElement> elems){
+        for (WebElement elem:elems) {
+            System.out.println(elem);
+            softAssert.assertTrue(elem.isDisplayed(),"Sorry, the element "+ elem.getText() + "is not displayed." );
+        }
+        softAssert.assertAll("Some elements were not displayed");
     }
+
+
 }
