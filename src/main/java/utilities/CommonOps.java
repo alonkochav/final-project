@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import workflows.WebFlows;
@@ -29,6 +28,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Runtime.getRuntime;
+
 public class CommonOps extends Base {
 
     public String getData (String nodeName) {
@@ -38,8 +39,7 @@ public class CommonOps extends Base {
         DocumentBuilderFactory dbFactory;
 
         try {
-            fXmlFile = new File("D:\\Automation\\final-project\\Confirguration\\DataConfig.xml");
-            System.out.println(fXmlFile);
+            fXmlFile = new File(".\\Configuration\\DataConfig.xml");
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(fXmlFile);
@@ -53,13 +53,13 @@ public class CommonOps extends Base {
         }
     }
 
-    public void initBrowser(String browserType) throws IOException {
+    public void initBrowser(String browserType) {
         if (browserType.equalsIgnoreCase("chrome"))
             driver = initChromeDriver();
         else if (browserType.equalsIgnoreCase("firefox"))
             driver = initFirefoxDriver();
-        else if (browserType.equalsIgnoreCase("tor"))
-            driver = initTorDriver();
+//        else if (browserType.equalsIgnoreCase("tor"))
+//            driver = initTorDriver();
         else if (browserType.equalsIgnoreCase("ie/edge"))
             driver = initIEDriver();
         else
@@ -93,11 +93,10 @@ public class CommonOps extends Base {
         return driver;
     }
 
-    public static WebDriver initTorDriver() throws IOException {
+/*    public static WebDriver initTorDriver() {
         System.setProperty("webdriver.gecko.driver", ".C:\\Users\\DELL\\Desktop\\Tor Browser\\geckodriver.exe");
         String torPath = "C:\\Users\\DELL\\Desktop\\Tor Browser\\Browser\\firefox.exe";
-
-        Runtime runTime = Runtime.getRuntime();
+        Runtime runTime = getRuntime();
         Process torProcess = runTime.exec(torPath + " -n");
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("network.proxy.type", 1);
@@ -107,7 +106,7 @@ public class CommonOps extends Base {
         firefoxOptions.setProfile(profile);
         WebDriver driver;
         driver = new FirefoxDriver(firefoxOptions);
-         JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         return driver;
 
         //added end
@@ -177,9 +176,10 @@ public class CommonOps extends Base {
 //        driver = new FirefoxDriver(options);
 //        return driver;
     }
+*/
 
     @BeforeClass
-    public void startSession() throws IOException {
+    public void startSession() {
         if (getData("PlatformName").equalsIgnoreCase("web"))
             initBrowser(getData("BrowserName"));
 //        else if (getData("PlatformName").equalsIgnoreCase("mobile"))
@@ -191,7 +191,7 @@ public class CommonOps extends Base {
 
     @AfterMethod
     public void afterMethod(){
-        driver.get("http://localhost:3000/");
+        driver.get(getData("url"));
 
     }
 
