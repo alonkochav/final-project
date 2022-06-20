@@ -1,11 +1,13 @@
 package workflows;
 
 import extensions.UIActions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
 
 public class WebFlows extends CommonOps {
 
+    @Step("Business Flow: Login")
     public static void login(String user, String pass){
         UIActions.updateText(grafanaLogin.txt_username, user);
         UIActions.updateText(grafanaLogin.txt_password, pass);
@@ -13,10 +15,12 @@ public class WebFlows extends CommonOps {
         UIActions.click(grafanaLogin.btn_skip);
     }
 
+    @Step("Business Flow: show Users")
     public static void showUsers(){
         UIActions.mouseHover( grafanaLeftMenu.btn_server,grafanaServerAdmin.link_users);
     }
 
+    @Step("Business Flow: Create New User")
     public static void createNewUser(String name, String email, String username, String pass){
         UIActions.click(grafanaServerAdminMain.btn_newUser);
         UIActions.updateText(grafanaAddNewUser.txt_name, name);
@@ -26,6 +30,7 @@ public class WebFlows extends CommonOps {
         UIActions.click(grafanaAddNewUser.btn_create);
     }
 
+    @Step("Business Flow: Delete last user")
     public static void deleteLastUser(){
         UIActions.click(grafanaServerAdminMain.row);
         UIActions.click(grafanaEditUser.btn_deleteUser);
