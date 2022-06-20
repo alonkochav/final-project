@@ -1,6 +1,7 @@
 package workflows;
 
 import extensions.UIActions;
+import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
 
 public class WebFlows extends CommonOps {
@@ -26,7 +27,7 @@ public class WebFlows extends CommonOps {
     }
 
     public static void deleteLastUser(){
-        UIActions.click(grafanaServerAdminMain.rows.get(grafanaServerAdminMain.rows.size()-1));
+        UIActions.click(grafanaServerAdminMain.row);
         UIActions.click(grafanaEditUser.btn_deleteUser);
         UIActions.click(grafanaEditUser.btn_confirmDeleteUser);
     }

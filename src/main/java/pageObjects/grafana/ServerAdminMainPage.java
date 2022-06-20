@@ -8,10 +8,13 @@ import java.util.List;
 
     public class ServerAdminMainPage  extends ServerAdminMenuPage {
 
-    @FindBy(how = How.CSS, using = "table.filter-table tbody tr")
+    @FindBy(how = How.CSS, using = ".admin-list-table table tbody tr")
     public List<WebElement> rows;
 
-    @FindBy(how = How.CSS, using = "div.page-body div.page-action-bar a[href='admin/users/create")
+    @FindBy(how = How.CSS, using = ".admin-list-table table tbody tr:last-of-type a")
+    public WebElement row;
+
+    @FindBy(how = How.CSS, using = ".page-action-bar a")
     public WebElement btn_newUser;
 
     }

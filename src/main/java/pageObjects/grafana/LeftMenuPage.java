@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class LeftMenuPage {
+    @FindBy(how = How.CSS, using = "a[href='/']")
+    public WebElement btn_home;
+
 //    @FindBy(how = How.CSS, using = "ul:first-of-type > li:nth-of-type(1)")
 //    public WebElement btn_search;
 //

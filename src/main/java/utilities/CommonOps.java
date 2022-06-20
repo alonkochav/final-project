@@ -1,8 +1,6 @@
 package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-//import org.openqa.selenium.Dimension;
-//import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,11 +12,38 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
+import org.w3c.dom.Document;
 import workflows.WebFlows;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends Base {
+
+    public String getData (String nodeName) {
+        File fXmlFile;
+        DocumentBuilder dBuilder;
+        Document doc = null;
+        DocumentBuilderFactory dbFactory;
+
+        try {
+            fXmlFile = new File("D:\\Automation\\final-project\\Confirguration\\DataConfig.xml");
+            System.out.println(fXmlFile);
+            dbFactory = DocumentBuilderFactory.newInstance();
+            dBuilder = dbFactory.newDocumentBuilder();
+            doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
+        }
+        catch(Exception e) {
+            System.out.println("Exception in reading XML file: " + e);
+        }
+        finally {
+            return doc.getElementsByTagName(nodeName).item(0).getTextContent();
+        }
+    }
 
     public void initBrowser(String browserType) {
         if (browserType.equalsIgnoreCase("chrome"))
@@ -31,9 +56,9 @@ public class CommonOps extends Base {
             throw new RuntimeException("Invalid browser type");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,5);
-        driver.get("http://localhost:3000/");
+        driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")),TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver,Long.parseLong(getData("Timeout")));
+        driver.get(getData("url"));
         ManagePages.initGrafana();
         action = new Actions(driver);
         softAssert = new SoftAssert();
@@ -59,24 +84,19 @@ public class CommonOps extends Base {
 
     @BeforeClass
     public void startSession() {
-        String platform = "web";
-        if (platform.equalsIgnoreCase("web"))
-            initBrowser("chrome");
-//        else if (platform.equalsIgnoreCase("mobile"))
+        if (getData("PlatformName").equalsIgnoreCase("web"))
+            initBrowser(getData("BrowserName"));
+//        else if (getData("PlatformName").equalsIgnoreCase("mobile"))
 //            initMobile();
         else
             throw new RuntimeException("Invalid platform name");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    @BeforeMethod
-    public void beforeMethod(){
-        driver.get("localhost:3000");
-    }
-
     @AfterMethod
     public void afterMethod(){
-        driver.navigate().refresh();
+        driver.get("http://localhost:3000/");
+
     }
 
     @AfterClass
