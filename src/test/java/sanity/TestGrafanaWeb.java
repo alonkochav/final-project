@@ -16,6 +16,7 @@ public class TestGrafanaWeb extends CommonOps {
 
     @Test
     public void test02_verifyDefaultUsers(){
+        WebFlows.login("admin", "admin");
         WebFlows.showUsers();
         Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
     }
