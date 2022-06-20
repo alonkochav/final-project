@@ -1,1 +1,14 @@
-/allure-results/
+.allure
+.gradle
+schema
+build
+/*/allure-results/
+out
+.gradletasknamecache
+
+#IDEA Files
+.idea/*
+!.idea/vcs.xml
+!.idea/icon.png
+*.iml
+*.ipr
