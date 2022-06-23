@@ -191,14 +191,12 @@ public class CommonOps extends Base {
 
     @AfterMethod
     public void afterMethod(){
-        driver.get(getData("url"));
-
+            driver.get(getData("url"));
     }
 
     @AfterClass
     public void closeSession() {
         driver.quit();
-
     }
 }
 

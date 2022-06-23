@@ -15,10 +15,7 @@ public class MainPage {
     @FindBy(how = How.CSS, using = "div.panel-content div:nth-child(2) > div:first-of-type > div")
     public static WebElement head_progressSteps;
 
-    @FindBy(how = How.CSS, using = "div.panel-content div:nth-child(2) > div > div + div > a, a + div, a + div + div")
+    @FindBy(how = How.CSS, using = ".panel-container div.panel-content div:nth-child(2) > div > div + div > a, a + div, a + div + div")
     public static List<WebElement> list_progressSteps;
-
-//    @FindBy(how = How.XPATH, using = "//*[@id='2']//section//*")
-//    public List<WebElement> list_progressSteps;
 
 }

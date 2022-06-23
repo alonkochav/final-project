@@ -2,10 +2,17 @@ package sanity;
 
 import extensions.Verifications;
 import io.qameta.allure.Description;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;
 import workflows.WebFlows;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Listeners(utilities.Listeners.class)
 public class TestGrafanaWeb extends CommonOps {
 
     @Test(description = "Test 01 - Verify Header")
@@ -19,6 +26,7 @@ public class TestGrafanaWeb extends CommonOps {
     @Description ("This Test verifies the default users")
     public void test02_verifyDefaultUsers(){
         WebFlows.showUsers();
+//        Verifications.numberOfElements(grafanaServerAdminMain.rows,99);      // FAIL TEST
         Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
     }
 
@@ -27,7 +35,9 @@ public class TestGrafanaWeb extends CommonOps {
     public void test03_verifyNewUser(){
         WebFlows.showUsers();
         WebFlows.createNewUser("Digital", "digital@web.com", "digiweb", "12345678");
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,99); // FAIL TEST
+//        Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
+
     }
 
     @Test (description = "Test 04 - Verify User Deletion")
@@ -36,15 +46,21 @@ public class TestGrafanaWeb extends CommonOps {
         WebFlows.showUsers();
         WebFlows.deleteLastUser();
         WebFlows.showUsers();
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
+//        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+
     }
+
     @Test (description = "Test 05 - Verify progress steps")
     @Description ("This Test verifies the progress steps are visible on main page using soft Assertion")
     public void test05_verifyProgressSteps(){
-        Verifications.verifyTextInElement( grafanaMain.head_progressSteps,"Basic\n" +
-                "The steps below will guide you to quickly finish setting up your Grafana installation.");
-        for (int i = 0 ; i < grafanaMain.list_progressSteps.size(); i++){
+        List<WebElement> listOfAllWebElements = new ArrayList<WebElement>();
+        listOfAllWebElements.add(grafanaMain.head_progressSteps);
+        for (WebElement elem:grafanaMain.list_progressSteps){
+            listOfAllWebElements.add(elem);
         }
-        Verifications.visibilityOfElements(grafanaMain.list_progressSteps);
+//        Verifications.verifyTextInElement( grafanaMain.head_progressSteps,"Basic\n" +
+//                "The steps below will guide you to quickly finish setting up your Grafana installation.");
+        Verifications.visibilityOfElements(listOfAllWebElements);
     }
 }

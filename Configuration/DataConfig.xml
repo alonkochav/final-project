@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Environment>
+
     <!-- Timeout -->
     <Timeout>5</Timeout>
 
     <!-- Web -->
-
     <PlatformName>web</PlatformName>
-    <BrowserName>firefox</BrowserName>
+    <BrowserName>chrome</BrowserName>
     <url>http://127.0.0.1:3000/</url>
 
 </Environment>

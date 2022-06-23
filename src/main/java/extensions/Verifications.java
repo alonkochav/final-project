@@ -1,6 +1,6 @@
 package extensions;
 
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.CommonOps;
@@ -25,11 +25,11 @@ public class Verifications extends CommonOps {
 
     @Step("Verify visibility of elements using softAssertion")
     public static void visibilityOfElements(List<WebElement> elems){
+        int index = 0;
         for (WebElement elem:elems) {
+            wait.until(ExpectedConditions.visibilityOfAllElements(elems));
             softAssert.assertTrue(elem.isDisplayed(),"Sorry, the element "+ elem.getText() + "is not displayed." );
         }
         softAssert.assertAll("Some elements were not displayed");
     }
-
-
 }
