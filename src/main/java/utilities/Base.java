@@ -3,6 +3,7 @@ package utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
+import org.sikuli.script.Screen;
 import org.testng.asserts.SoftAssert;
 
 public class Base {
@@ -11,6 +12,7 @@ public class Base {
     protected static WebDriverWait wait;
     protected static Actions action;
     protected static SoftAssert softAssert;
+    protected static Screen screen;
 
     // page objects
     protected static pageObjects.grafana.LoginPage grafanaLogin;

@@ -35,23 +35,11 @@ public class Listeners extends CommonOps implements ITestListener {
         System.out.println("---------------------- Test: " + test.getName() + " Passed ------------------");
     }
 
-//    public void onTestFailure(ITestResult test) {
-//        saveScreenshot();
-//
-//        File file =  saveScreenshot();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        File file = ts.getScreenshotAs(OutputType.FILE);
-//        FileUtils.copyFile(file,new File ("./ScreenShot_Folder/Test1_Login.png"));
-//
-//    }
-//    @Attachment(value = "Page Screen Shot" ,type = "image/png")
+
     public void onTestFailure(ITestResult result) {
         System.out.println("---------------------- Test "  + result.getName() + " Failed ------------------");
             saveScreenshot(driver);
-//        Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES)));
+        Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES)));
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {

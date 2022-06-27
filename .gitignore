@@ -1,8 +1,9 @@
 .allure
 .gradle
-schema
-build
+schema/
+build/
 /*/allure-results/
+target/
 out
 .gradletasknamecache
 
@@ -12,3 +13,4 @@ out
 !.idea/icon.png
 *.iml
 *.ipr
+

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Environment>
 
-    <!-- Timeout -->
+<!--     Timeout -->
     <Timeout>5</Timeout>
 
-    <!-- Web -->
+<!--     Web -->
     <PlatformName>web</PlatformName>
     <BrowserName>chrome</BrowserName>
     <url>http://127.0.0.1:3000/</url>
+    <ImageRepo>D:\\Automation\\final-project\\ImageRepository\\</ImageRepo>
 
 </Environment>
