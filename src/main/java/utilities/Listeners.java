@@ -10,35 +10,33 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 
 public class Listeners extends CommonOps implements ITestListener {
 
-    public void onStart(ITestContext execution) {
+    public void onStart (ITestContext execution) {
         System.out.println("---------------------- Starting Execution ------------------");
     }
 
-    public void onFinish(ITestContext execution) {
+    public void onFinish (ITestContext execution) {
         System.out.println("---------------------- Ending Execution ------------------");
     }
 
-    public void onTestSkipped(ITestResult test) {
+    public void onTestSkipped (ITestResult test) {
         System.out.println("---------------------- Skipping Test "  + test.getName() + "  ------------------");
     }
 
-    public void onTestStart(ITestResult test) {
+    public void onTestStart (ITestResult test) {
         System.out.println("---------------------- Starting Test: " + test.getName() + "  ------------------");
     }
 
-    public void onTestSuccess(ITestResult test) {
+    public void onTestSuccess (ITestResult test) {
         System.out.println("---------------------- Test: " + test.getName() + " Passed ------------------");
     }
 
-
-    public void onTestFailure(ITestResult result) {
+    public void onTestFailure (ITestResult result) {
         System.out.println("---------------------- Test "  + result.getName() + " Failed ------------------");
-            saveScreenshot(driver);
+        saveScreenshot(driver);
         Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES)));
     }
 
@@ -49,7 +47,7 @@ public class Listeners extends CommonOps implements ITestListener {
     }
 
     @Attachment(value = "Page Screen Shot" ,type = "image/png")
-    public byte[] saveScreenshot(WebDriver driver) {
+    public byte[] saveScreenshot (WebDriver driver) {
         return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
     }
 
