@@ -22,21 +22,15 @@ import org.sikuli.script.Screen;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
-
 import org.w3c.dom.Document;
-import workflows.WebFlows;
+import java.lang.reflect.Method;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.io.IOException;
-
-import java.nio.file.Path;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-
-import static java.lang.Runtime.getRuntime;
 
 public class CommonOps extends Base {
 
@@ -77,7 +71,6 @@ public class CommonOps extends Base {
         driver.get(getData("url"));
         ManagePages.initGrafana();
         action = new Actions(driver);
-
     }
 
     public static WebDriver initChromeDriver() {
@@ -90,7 +83,6 @@ public class CommonOps extends Base {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         return driver;
-
     }
 
     public static WebDriver initIEDriver() {
@@ -110,6 +102,17 @@ public class CommonOps extends Base {
 
         softAssert = new SoftAssert();
         screen = new Screen();
+    }
+
+    @BeforeMethod
+    public void beforeMethod(Method method) {
+        ((JavascriptExecutor) driver).executeScript("window.focus();");
+
+        try {
+            MonteScreenRecorder.startRecord(method.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterMethod

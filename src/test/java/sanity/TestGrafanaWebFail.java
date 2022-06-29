@@ -4,12 +4,12 @@ import extensions.Verifications;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class FailedTestGrafanaWeb {
+public class TestGrafanaWebFail {
 
 
-    @Test(description = "Test 06 - Verify Avatar Icon FAIL  - should fail ")
+    @Test ( enabled = false ,description = "Test 06-1 - Verify Avatar Icon FAIL  - should fail ")
     @Description("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
-    public void test06_verifyAvatarIcon_fail()
+    public void test06_1_verifyAvatarIcon_fail()
     {
 
         Verifications.visualElement("FakeGrafanaAvatar");  // FAILURE TEST
@@ -20,9 +20,9 @@ public class FailedTestGrafanaWeb {
 
     }
 
-    @Test (description = "Test 07 - Verify Avatar Icon SIMILAR  - should fail ")
+    @Test ( enabled = false ,description = "Test 06-2  - Verify Avatar Icon SIMILAR  - should fail ")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
-    public void test07_verifyAvatarIcon_similar()
+    public void test06_2_verifyAvatarIcon_similar()
     {
 //        Verifications.visualElement("FakeGrafanaAvatar");  // FAILURE TEST
         Verifications.visualElement("SimilarGrafanaAvatar");  // SIMILAR IMAGE TEST
@@ -32,9 +32,9 @@ public class FailedTestGrafanaWeb {
 
     }
 
-    @Test (description= "Test 08 - Verify Avatar Icon EMPTY  - should fail ")
+    @Test ( enabled = false ,description= "Test  06-3 - Verify Avatar Icon EMPTY  - should fail ")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
-    public void test08_verifyAvatarIcon_empty()
+    public void test06_3_verifyAvatarIcon_empty()
     {
 //        Verifications.visualElement("FakeGrafanaAvatar");  // FAILURE TEST
 //        Verifications.visualElement("SimilarGrafanaAvatar");  // SIMILAR IMAGE TEST
@@ -44,9 +44,9 @@ public class FailedTestGrafanaWeb {
 
     }
 
-    @Test (description = "Test 09 - Verify Avatar Icon - Verify Avatar Icon LARGE   - should fail")
+    @Test ( enabled = false , description = "Test 06-4 - Verify Avatar Icon - Verify Avatar Icon LARGE   - should fail")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
-    public void test09_verifyAvatarIcon()
+    public void test06_4_verifyAvatarIcon()
     {
 //        Verifications.visualElement("FakeGrafanaAvatar");  // FAILURE TEST
 //        Verifications.visualElement("SimilarGrafanaAvatar");  // SIMILAR IMAGE TEST
@@ -55,9 +55,9 @@ public class FailedTestGrafanaWeb {
 //        Verifications.visualElement("GrafanaAvatar");  // TRUE TEST
     }
 
-    @Test (description = "Test 10 - Verify Avatar Icon")
+    @Test ( enabled = false ,description = "Test 06-5 - Verify Avatar Icon")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
-    public void test10_verifyAvatarIcon()
+    public void test06_5_verifyAvatarIcon()
     {
 //        Verifications.visualElement("FakeGrafanaAvatar");  // FAILURE TEST
 //        Verifications.visualElement("SimilarGrafanaAvatar");  // SIMILAR IMAGE TEST

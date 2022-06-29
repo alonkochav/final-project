@@ -1,11 +1,11 @@
 .allure
 .gradle
-schema/
-build/
+schema
+build
 /*/allure-results/
-target/
 out
 .gradletasknamecache
+/target/
 
 #IDEA Files
 .idea/*
@@ -13,4 +13,4 @@ out
 !.idea/icon.png
 *.iml
 *.ipr
-
+/target

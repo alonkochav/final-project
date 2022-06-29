@@ -67,4 +67,6 @@ public class TestGrafanaWeb extends CommonOps {
     public void test06_verifyAvatarIcon() {
          Verifications.visualElement("GrafanaAvatar");
     }
+
+
 }
