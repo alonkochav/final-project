@@ -37,7 +37,6 @@ public class TestGrafanaWeb extends CommonOps {
         WebFlows.createNewUser("Digital", "digital@web.com", "digiweb", "12345678");
 //        Verifications.numberOfElements(grafanaServerAdminMain.rows,99); // FAIL TEST
         Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
-
     }
 
     @Test (description = "Test 04 - Verify User Deletion")
@@ -46,8 +45,8 @@ public class TestGrafanaWeb extends CommonOps {
         WebFlows.showUsers();
         WebFlows.deleteLastUser();
         WebFlows.showUsers();
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
-//        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+//        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
     }
 
     @Test (description = "Test 05 - Verify progress steps")
@@ -62,8 +61,8 @@ public class TestGrafanaWeb extends CommonOps {
     @Test (description = "Test 06 - Verify Avatar Icon")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
     public void test06_verifyAvatarIcon() {
-//        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
-        Verifications.visualElement("GrafanaAvatar");
+        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
+//        Verifications.visualElement("GrafanaAvatar");
     }
 
     @Test (description = "Test 07 - Search Users", dataProvider = "data-provider-users", dataProviderClass = utilities.ManageDDT.class)

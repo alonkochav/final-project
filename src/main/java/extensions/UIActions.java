@@ -27,7 +27,7 @@
         public static void updateTextHuman(WebElement elem, String text) {
             wait.until(ExpectedConditions.visibilityOf(elem));
             for (char ch : text.toCharArray()){
-                Uninterruptibles.sleepUninterruptibly(300, TimeUnit.MILLISECONDS);
+                Uninterruptibles.sleepUninterruptibly(250, TimeUnit.MILLISECONDS);
                 elem.sendKeys(ch+ "");
             }
         }

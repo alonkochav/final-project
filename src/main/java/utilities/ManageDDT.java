@@ -20,7 +20,6 @@ public class ManageDDT extends CommonOps {
         File file = new File(csvFile);
         try {
             lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
-            System.out.println(lines.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,19 +30,12 @@ public class ManageDDT extends CommonOps {
         List<String> csvData = readCSV(filePath);
         int numRows = csvData.size();
         Object[][] data = new Object[numRows][2];
-        System.out.println(numRows);
-        for (int i = 0; i < csvData.size(); i++){
-
+        for (int i = 0; i < numRows; i++) {
             data[i][0] = csvData.get(i).split(",")[0];
-            System.out.println( data[i][0] );
             data[i][1] = csvData.get(i).split(",")[1];
-            System.out.println( data[i][1] );
         }
         return data;
-
-
     }
-
 }
 
 
