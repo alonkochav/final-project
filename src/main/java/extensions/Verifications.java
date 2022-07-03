@@ -8,8 +8,7 @@ import utilities.CommonOps;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
+import static org.testng.Assert.*;
 
 public class Verifications extends CommonOps {
 
@@ -37,10 +36,22 @@ public class Verifications extends CommonOps {
     @Step("Verify Element Visually")
     public static void  visualElement(String expectedImageName){
         try{
+            wait.until(ExpectedConditions.visibilityOf(grafanaLeftMenu.btn_home));
             screen.find(getData("ImageRepo")+expectedImageName+".png");
         } catch (FindFailed findFailed){
             System.out.println("Error comparing Image File " + findFailed);
             fail("Error comparing Image File " + findFailed);
         }
     }
+
+    @Step("Verify Element Displayed in Search")
+    public static void existenceOfElement(List<WebElement> elems) {
+        assertTrue(elems.size() > 0);
+    }
+
+    @Step("Verify Element is Not Displayed in Search")
+    public static void nonExistenceOfElement(List<WebElement> elems){
+        assertFalse(elems.size() > 0);
+    }
+
 }

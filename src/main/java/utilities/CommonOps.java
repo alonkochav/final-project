@@ -14,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.sikuli.script.FindFailed;
@@ -106,8 +107,9 @@ public class CommonOps extends Base {
 
     @BeforeMethod
     public void beforeMethod(Method method) {
-        ((JavascriptExecutor) driver).executeScript("window.focus();");
 
+        ((JavascriptExecutor) driver).executeScript("window.focus();");
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
         try {
             MonteScreenRecorder.startRecord(method.getName());
         } catch (Exception e) {
@@ -118,6 +120,7 @@ public class CommonOps extends Base {
     @AfterMethod
     public void afterMethod() {
         driver.get(getData("url"));
+        ((JavascriptExecutor) driver).executeScript("window.focus();");
     }
 
     @AfterClass

@@ -17,4 +17,7 @@ import java.util.List;
     @FindBy(how = How.CSS, using = ".page-action-bar a")
     public WebElement btn_newUser;
 
+    @FindBy(how = How.CSS, using = "input[placeholder='Search user by login, email, or name.']")
+    public WebElement txt_search;
+
     }

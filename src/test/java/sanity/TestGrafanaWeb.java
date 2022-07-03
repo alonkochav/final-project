@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import utilities.CommonOps;
 import workflows.WebFlows;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,6 @@ public class TestGrafanaWeb extends CommonOps {
     @Test(description = "Test 01 - Verify Header")
     @Description ("This Test logs in and verifies the main header")
     public void test01_verifyHeader(){
-//        Verifications.visualElement("Login_btn");
         WebFlows.login("admin", "admin");
         Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
     }
@@ -46,9 +46,8 @@ public class TestGrafanaWeb extends CommonOps {
         WebFlows.showUsers();
         WebFlows.deleteLastUser();
         WebFlows.showUsers();
-//        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
-
+        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
+//        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
     }
 
     @Test (description = "Test 05 - Verify progress steps")
@@ -57,16 +56,21 @@ public class TestGrafanaWeb extends CommonOps {
         List<WebElement> listOfAllWebElements = new ArrayList<>();
         listOfAllWebElements.add(grafanaMain.head_progressSteps);
         listOfAllWebElements.addAll(grafanaMain.list_progressSteps);
-//        Verifications.verifyTextInElement( grafanaMain.head_progressSteps,"Basic\n" +
-//                "The steps below will guide you to quickly finish setting up your Grafana installation.");
         Verifications.visibilityOfElements(listOfAllWebElements);
     }
 
     @Test (description = "Test 06 - Verify Avatar Icon")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
     public void test06_verifyAvatarIcon() {
-         Verifications.visualElement("GrafanaAvatar");
+//        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
+        Verifications.visualElement("GrafanaAvatar");
     }
 
+    @Test (description = "Test 07 - Search Users", dataProvider = "data-provider-users", dataProviderClass = utilities.ManageDDT.class)
+    @Description ("This Test Searches Users in the List Using DDT" )
+    public void test07_searchUsers(String user, String shouldExist) {
+        WebFlows.showUsers();
+        WebFlows.searchAndVerifyUser(user,shouldExist);
+    }
 
 }

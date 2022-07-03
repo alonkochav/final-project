@@ -1,6 +1,7 @@
 package workflows;
 
 import extensions.UIActions;
+import extensions.Verifications;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
 
@@ -37,4 +38,16 @@ public class WebFlows extends CommonOps {
         UIActions.click(grafanaEditUser.btn_confirmDeleteUser);
     }
 
+    @Step("Business Flow: Search and Verify User")
+    public static void searchAndVerifyUser(String user, String shouldExist) {
+        UIActions.updateTextHuman(grafanaServerAdminMain.txt_search,user);
+        if (shouldExist.equalsIgnoreCase("existing")){
+            Verifications.existenceOfElement(grafanaServerAdminMain.rows);
+            System.out.println("The user " + user + " DOES exist!");
+        } else if (shouldExist.equalsIgnoreCase("nonExisting")){
+            Verifications.nonExistenceOfElement(grafanaServerAdminMain.rows);
+            System.out.println("The user " + user + " doesn't exist");
+        } else
+            throw new RuntimeException("Invalid Expected Output Option in Data Driven Testing , Should be 'existing' or 'nonExisting'");
+    }
 }
