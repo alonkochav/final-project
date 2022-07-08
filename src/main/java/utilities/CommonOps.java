@@ -101,11 +101,11 @@ public class CommonOps extends Base {
     }
 
     public static void initMobile(){
-        dc.setCapability(MobileCapabilityType.UDID, "2983e30f");
-        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shivgadhia.android.ukMortgageCalc");
-        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
+        dc.setCapability(MobileCapabilityType.UDID, getData("UDID"));
+        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getData("AppPackage"));
+        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getData("AppActivity"));
         try {
-            mobileDriver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), dc);
+            mobileDriver = new AndroidDriver(new URL(getData("AppiumServer")), dc);
         } catch (Exception e) {
             System.out.println("Cannot Connect to Appium Server. See details: " + e);
         }

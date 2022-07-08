@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Environment>
 
-<!--     Timeout -->
+    <!--     Timeout -->
     <Timeout>1</Timeout>
 
-<!--    General-->
+    <!--    General-->
     <PlatformName>mobile</PlatformName>
-
 
     <!--     Web -->
     <BrowserName>chrome</BrowserName>
     <url>http://127.0.0.1:3000/</url>
     <ImageRepo>D:\\Automation\\final-project\\ImageRepository\\</ImageRepo>
+
+    <!--    Mobile  -->
+    <UDID>2983e30f</UDID>
+    <AppPackage>com.shivgadhia.android.ukMortgageCalc</AppPackage>
+    <AppActivity>.MainActivity</AppActivity>
+    <AppiumServer>http://localhost:4723/wd/hub</AppiumServer>
 
     <!-- DDT Driven Testing -->
     <DDTFile>.\\DDTFiles\\users.csv</DDTFile>
