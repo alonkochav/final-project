@@ -2,7 +2,10 @@ package sanity;
 
 import extensions.Verifications;
 import io.qameta.allure.Description;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;
@@ -61,8 +64,10 @@ public class TestGrafanaWeb extends CommonOps {
     @Test (description = "Test 06 - Verify Avatar Icon")
     @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
     public void test06_verifyAvatarIcon() {
-        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
-//        Verifications.visualElement("GrafanaAvatar");
+        ((JavascriptExecutor) driver).executeScript("window.focus();");
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
+//        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
+        Verifications.visualElement("GrafanaAvatar");
     }
 
     @Test (description = "Test 07 - Search Users", dataProvider = "data-provider-users", dataProviderClass = utilities.ManageDDT.class)

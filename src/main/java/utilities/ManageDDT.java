@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ManageDDT extends CommonOps {
 
-    @DataProvider (name = "data-provider-users")
+    @DataProvider (name = "data-providyer-users")
     public Object[][] getDataObject() {
         return getDataFromCSV(getData("DDTFile"));
     }

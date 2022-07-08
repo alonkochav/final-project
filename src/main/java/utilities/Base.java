@@ -1,5 +1,6 @@
 package utilities;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
@@ -8,13 +9,20 @@ import org.testng.asserts.SoftAssert;
 
 public class Base {
 
-    protected static WebDriver driver;
+    // General
     protected static WebDriverWait wait;
     protected static Actions action;
     protected static SoftAssert softAssert;
     protected static Screen screen;
 
-    // page objects
+    // Web
+    protected static WebDriver driver;
+
+    // Mobile
+    protected static AppiumDriver mobileDriver;
+
+
+    // Pages Objects
     protected static pageObjects.grafana.LoginPage grafanaLogin;
     protected static pageObjects.grafana.MainPage grafanaMain;
     protected static pageObjects.grafana.LeftMenuPage grafanaLeftMenu;

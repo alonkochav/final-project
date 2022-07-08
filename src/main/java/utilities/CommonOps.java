@@ -1,6 +1,7 @@
 package utilities;
 
 import com.google.common.util.concurrent.Uninterruptibles;
+import io.appium.java_client.MobileElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.By;
@@ -31,6 +32,7 @@ import java.lang.reflect.Method;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends Base {
@@ -92,12 +94,20 @@ public class CommonOps extends Base {
         return driver;
     }
 
+    public static void initMobile(){
+        dc.setCapability("testName", testName);
+        dc.setCapability(MobileCapabilityType.UDID, "2983e30f");
+        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.kiwibrowser.browser");
+        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.chrome.Main");
+        driver = new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), dc);
+    }
+
     @BeforeClass
     public void startSession() {
         if (getData("PlatformName").equalsIgnoreCase("web"))
             initBrowser(getData("BrowserName"));
-//        else if (getData("PlatformName").equalsIgnoreCase("mobile"))
-//            initMobile();
+        else if (getData("PlatformName").equalsIgnoreCase("mobile"))
+            initMobile();
         else
             throw new RuntimeException("Invalid platform name");
 
@@ -107,7 +117,6 @@ public class CommonOps extends Base {
 
     @BeforeMethod
     public void beforeMethod(Method method) {
-
         ((JavascriptExecutor) driver).executeScript("window.focus();");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
         try {
