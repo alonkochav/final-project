@@ -2,6 +2,7 @@ package utilities;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.Screen;
@@ -20,6 +21,7 @@ public class Base {
 
     // Mobile
     protected static AppiumDriver mobileDriver;
+    protected static DesiredCapabilities dc = new DesiredCapabilities();
 
 
     // Pages Objects

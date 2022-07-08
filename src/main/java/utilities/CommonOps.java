@@ -2,11 +2,16 @@ package utilities;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -32,6 +37,7 @@ import java.lang.reflect.Method;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -95,11 +101,16 @@ public class CommonOps extends Base {
     }
 
     public static void initMobile(){
-        dc.setCapability("testName", testName);
         dc.setCapability(MobileCapabilityType.UDID, "2983e30f");
-        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.kiwibrowser.browser");
-        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.chrome.Main");
-        driver = new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), dc);
+        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shivgadhia.android.ukMortgageCalc");
+        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
+        try {
+            mobileDriver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), dc);
+        } catch (Exception e) {
+            System.out.println("Cannot Connect to Appium Server. See details: " + e);
+        }
+        mobileDriver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
+        wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
     }
 
     @BeforeClass
