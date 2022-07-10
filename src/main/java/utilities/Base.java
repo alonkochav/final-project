@@ -24,15 +24,17 @@ public class Base {
     protected static DesiredCapabilities dc = new DesiredCapabilities();
 
 
-    // Pages Objects
+    // Page Objects - Web
     protected static pageObjects.grafana.LoginPage grafanaLogin;
     protected static pageObjects.grafana.MainPage grafanaMain;
     protected static pageObjects.grafana.LeftMenuPage grafanaLeftMenu;
     protected static pageObjects.grafana.ServerAdminMenuPage grafanaServerAdmin;
-
     protected static pageObjects.grafana.ServerAdminMainPage grafanaServerAdminMain;
     protected static pageObjects.grafana.AddNewUserPage grafanaAddNewUser;
     protected static pageObjects.grafana.EditUserPage grafanaEditUser;
+
+    // Page Objects - Mobile
+    protected static pageObjects.mortgage.MainPage mortgageMain;
 
 
 }

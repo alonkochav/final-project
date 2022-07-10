@@ -13,4 +13,8 @@ public class ManagePages extends Base{
         grafanaAddNewUser = PageFactory.initElements(driver, pageObjects.grafana.AddNewUserPage.class);
         grafanaEditUser = PageFactory.initElements(driver, pageObjects.grafana.EditUserPage.class);
     }
+
+    public static void initMortgage(){
+        mortgageMain = new pageObjects.mortgage.MainPage(mobileDriver);
+    }
 }

@@ -32,6 +32,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
+import pageObjects.mortgage.MainPage;
+
 import java.lang.reflect.Method;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -39,6 +41,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends Base {
@@ -109,6 +112,7 @@ public class CommonOps extends Base {
         } catch (Exception e) {
             System.out.println("Cannot Connect to Appium Server. See details: " + e);
         }
+        ManagePages.initMortgage();
         mobileDriver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
     }
@@ -144,7 +148,7 @@ public class CommonOps extends Base {
     }
 
     @AfterClass
-    public void closeBrowser() {
+    public void closeBrowser(){
         driver.quit();
     }
 
