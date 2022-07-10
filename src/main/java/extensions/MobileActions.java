@@ -3,6 +3,7 @@ package extensions;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
+//import org.openqa.selenium.interactions.touch.TouchActions;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.WaitOptions;
@@ -10,16 +11,23 @@ import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.interactions.touch.TouchActions;
+//import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utilities.CommonOps;
 
 import java.time.Duration;
 
-public class MobileActions extends UIActions {
+public class MobileActions extends CommonOps {
+
+    @Step("Update Text Element")
+    public static void updateText(MobileElement elem, String text) {
+        wait.until(ExpectedConditions.visibilityOf(elem));
+        elem.sendKeys(text);
+    }
 
 /*    ====================================         TAP  =============================================== */
     @Step ("Tap on Element")
-    public void tap (MobileElement elem) {
+    public static void tap (MobileElement elem) {
         wait.until(ExpectedConditions.elementToBeClickable(elem));
         AndroidTouchAction action = new AndroidTouchAction (mobileDriver);
         action.tap((new TapOptions())
@@ -29,8 +37,8 @@ public class MobileActions extends UIActions {
 
 /*    ===================================   Long Press =============================================== */
     @Step ("Long press / longtap on Element")
-    public void longPress(MobileElement elem){
-        AndroidTouchAction  action = new AndroidTouchAction (mobileDriver);
+    public static void longPress(MobileElement elem){
+        AndroidTouchAction action = new AndroidTouchAction (mobileDriver);
         action.longPress(elem);
         action.perform();
     }
@@ -38,7 +46,7 @@ public class MobileActions extends UIActions {
 /*    =================================     SWIPE  =============================================== */
 
     @Step ("Swipe Element")
-    public void swipe(Direction dir) {
+    public static void swipe(Direction dir) {
         System.out.println("swipeScreen(): dir: '" + dir + "'"); // always log your actions
 
         // Animation default time:
@@ -100,7 +108,7 @@ public class MobileActions extends UIActions {
     /*    ================================     ZOOM  =============================================== */
 
     @Step ("Zoom Element -- ZOOM IN")
-    public void zoom(MobileElement elem) {
+    public static void zoom(MobileElement elem) {
         wait.until(ExpectedConditions.visibilityOf(elem));
 
         int x = elem.getLocation().getX() + elem.getSize().getWidth() / 2;
@@ -122,7 +130,7 @@ public class MobileActions extends UIActions {
     /*    ===================================     PINCH  =============================================== */
 
     @Step ("Pinch Element - ZOOM OUT")
-    public void pinch(MobileElement elem) {
+    public static void pinch(MobileElement elem) {
         wait.until(ExpectedConditions.visibilityOf(elem));
 
         int x = elem.getLocation().getX() + elem.getSize().getWidth() / 2;
