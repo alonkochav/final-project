@@ -1,29 +1,23 @@
 package utilities;
 
-import com.google.common.util.concurrent.Uninterruptibles;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.screenrecording.BaseStartScreenRecordingOptions;
+import io.appium.java_client.screenrecording.CanRecordScreen;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 
 import org.testng.annotations.AfterClass;
@@ -32,19 +26,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
-import pageObjects.mortgage.MainPage;
 
 import java.lang.reflect.Method;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends Base {
+
+    public boolean isWeb() {
+        return getData("PlatformName").equalsIgnoreCase("web");
+    }
+    public boolean isMobile() {
+        return getData("PlatformName").equalsIgnoreCase("mobile");
+    }
 
     public static String getData(String nodeName) {
         File fXmlFile;
@@ -103,12 +102,16 @@ public class CommonOps extends Base {
         return driver;
     }
 
+    // Mobile driver methods
+
     public static void initMobile(){
+
         dc.setCapability(MobileCapabilityType.UDID, getData("UDID"));
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getData("AppPackage"));
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getData("AppActivity"));
         try {
-            mobileDriver = new AndroidDriver(new URL(getData("AppiumServer")), dc);
+            mobileDriver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), dc);
+
         } catch (Exception e) {
             System.out.println("Cannot Connect to Appium Server. See details: " + e);
         }
@@ -117,39 +120,58 @@ public class CommonOps extends Base {
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
     }
 
+    //  ---    BeforeClass
     @BeforeClass
     public void startSession() {
-        if (getData("PlatformName").equalsIgnoreCase("web"))
+        if (isWeb())
             initBrowser(getData("BrowserName"));
-        else if (getData("PlatformName").equalsIgnoreCase("mobile"))
+        else if (isMobile()){
             initMobile();
-        else
+        } else
             throw new RuntimeException("Invalid platform name");
-
         softAssert = new SoftAssert();
         screen = new Screen();
     }
 
+
+    //  ---    BeforeMethod
+
     @BeforeMethod
     public void beforeMethod(Method method) {
-        ((JavascriptExecutor) driver).executeScript("window.focus();");
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
         try {
-            MonteScreenRecorder.startRecord(method.getName());
+            if (isWeb()){
+                ((JavascriptExecutor) driver).executeScript("window.focus();");
+                wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"), 0));
+                MonteScreenRecorder.startRecord(method.getName());
+            } else {
+
+                //                ((CanRecordScreen) mobileDriver).startRecordingScreen(new BaseStartScreenRecordingOptions() {
+//                    @Override
+//                    public BaseStartScreenRecordingOptions withTimeLimit(Duration timeLimit) {
+//                        return super.withTimeLimit(Duration.ofMinutes(2));
+//                    }
+//                });
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+ //   --      @AfterMethod
     @AfterMethod
     public void afterMethod() {
-        driver.get(getData("url"));
-        ((JavascriptExecutor) driver).executeScript("window.focus();");
+        if (isWeb()) {
+            driver.get(getData("url"));
+            ((JavascriptExecutor) driver).executeScript("window.focus();");
+        }
     }
 
-    @AfterClass
-    public void closeBrowser(){
-        driver.quit();
+//   ---            @AfterClass
+   @AfterClass
+    public void closeSession(){
+    if (isMobile())
+        mobileDriver.quit();
+    else
+            driver.quit();
     }
-
 }

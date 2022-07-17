@@ -1,7 +1,8 @@
 package utilities;
 
-import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.WebDriver;
+ import io.appium.java_client.AppiumDriver;
+ import io.appium.java_client.android.AndroidDriver;
+ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
@@ -20,7 +21,7 @@ public class Base {
     protected static WebDriver driver;
 
     // Mobile
-    protected static AppiumDriver mobileDriver;
+    protected static AndroidDriver mobileDriver;
     protected static DesiredCapabilities dc = new DesiredCapabilities();
 
 

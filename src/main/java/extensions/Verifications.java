@@ -1,5 +1,6 @@
 package extensions;
 
+import io.appium.java_client.MobileElement;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +13,11 @@ import static org.testng.Assert.*;
 
 public class Verifications extends CommonOps {
 
+    @Step ("Verify Text in Elements")
+    public static void verifyTextInMobileElement(MobileElement elem, String expected){
+        wait.until(ExpectedConditions.visibilityOf(elem));
+        assertEquals(elem.getText(), expected);
+    }
     @Step ("Verify Text in Elements")
     public static void verifyTextInElement(WebElement elem, String expected){
         wait.until(ExpectedConditions.visibilityOf(elem));
@@ -30,7 +36,8 @@ public class Verifications extends CommonOps {
             wait.until(ExpectedConditions.visibilityOfAllElements(elems));
             softAssert.assertTrue(elem.isDisplayed(),"Sorry, the element "+ elem.getText() + "is not displayed." );
         }
-        softAssert.assertAll("Some elements were not displayed");
+        System.out.println("Some elements were not displayed");
+        softAssert.assertAll();
     }
 
     @Step("Verify Element Visually")

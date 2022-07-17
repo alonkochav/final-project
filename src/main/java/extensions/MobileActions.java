@@ -3,7 +3,7 @@ package extensions;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
-//import org.openqa.selenium.interactions.touch.TouchActions;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.WaitOptions;
@@ -20,14 +20,14 @@ import java.time.Duration;
 public class MobileActions extends CommonOps {
 
     @Step("Update Text Element")
-    public static void updateText(MobileElement elem, String text) {
+    public static void updateText(AndroidElement elem, String text) {
         wait.until(ExpectedConditions.visibilityOf(elem));
         elem.sendKeys(text);
     }
 
 /*    ====================================         TAP  =============================================== */
     @Step ("Tap on Element")
-    public static void tap (MobileElement elem) {
+    public static void tap (AndroidElement elem) {
         wait.until(ExpectedConditions.elementToBeClickable(elem));
         AndroidTouchAction action = new AndroidTouchAction (mobileDriver);
         action.tap((new TapOptions())
@@ -36,12 +36,12 @@ public class MobileActions extends CommonOps {
     }
 
 /*    ===================================   Long Press =============================================== */
-    @Step ("Long press / longtap on Element")
-    public static void longPress(MobileElement elem){
-        AndroidTouchAction action = new AndroidTouchAction (mobileDriver);
-        action.longPress(elem);
-        action.perform();
-    }
+//    @Step ("Long press / longtap on Element")
+//    public static void longPress(AndroidElement elem){
+//        TouchAction action = new TouchAction (mobileDriver);
+//        action.longPress(elem);
+//        action.perform();
+//    }
 
 /*    =================================     SWIPE  =============================================== */
 
@@ -61,7 +61,7 @@ public class MobileActions extends CommonOps {
         PointOption pointOptionStart, pointOptionEnd;
 
         // init screen variables
-        Dimension dims = driver.manage().window().getSize();
+        Dimension dims = mobileDriver.manage().window().getSize();
 
         // init start point = center of screen
         pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
@@ -108,7 +108,7 @@ public class MobileActions extends CommonOps {
     /*    ================================     ZOOM  =============================================== */
 
     @Step ("Zoom Element -- ZOOM IN")
-    public static void zoom(MobileElement elem) {
+    public static void zoom(AndroidElement elem) {
         wait.until(ExpectedConditions.visibilityOf(elem));
 
         int x = elem.getLocation().getX() + elem.getSize().getWidth() / 2;
@@ -130,7 +130,7 @@ public class MobileActions extends CommonOps {
     /*    ===================================     PINCH  =============================================== */
 
     @Step ("Pinch Element - ZOOM OUT")
-    public static void pinch(MobileElement elem) {
+    public static void pinch(AndroidElement elem) {
         wait.until(ExpectedConditions.visibilityOf(elem));
 
         int x = elem.getLocation().getX() + elem.getSize().getWidth() / 2;
@@ -154,7 +154,7 @@ public class MobileActions extends CommonOps {
         UP,
         DOWN,
         LEFT,
-        RIGHT;
+        RIGHT
     }
 
 }

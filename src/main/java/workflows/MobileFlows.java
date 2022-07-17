@@ -11,7 +11,9 @@ public class MobileFlows extends utilities.CommonOps {
         MobileActions.updateText(mortgageMain.txt_term, term);
         MobileActions.updateText(mortgageMain.txt_rate, rate);
         MobileActions.tap(mortgageMain.btn_calculate);
-     }
+        MobileActions.tap(mortgageMain.txt_repayment);
+
+    }
 
 
 }
