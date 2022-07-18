@@ -8,6 +8,7 @@ import io.appium.java_client.screenrecording.BaseStartScreenRecordingOptions;
 import io.appium.java_client.screenrecording.CanRecordScreen;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import io.restassured.RestAssured;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +44,8 @@ public class CommonOps extends Base {
     }
     public boolean isMobile() {
         return getData("PlatformName").equalsIgnoreCase("mobile");
+    }
+    public boolean isAPI() { return getData("PlatformName").equalsIgnoreCase("api");
     }
 
     public static String getData(String nodeName) {
@@ -120,14 +123,21 @@ public class CommonOps extends Base {
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
     }
 
+    public static void initAPI() {
+        RestAssured.baseURI = getData("urlAPI");
+        httpRequest = RestAssured.given().auth().preemptive().basic(getData("username"),getData("password"));
+    }
+
     //  ---    BeforeClass
     @BeforeClass
     public void startSession() {
         if (isWeb())
             initBrowser(getData("BrowserName"));
-        else if (isMobile()){
+        else if (isMobile())
             initMobile();
-        } else
+        else if (isAPI())
+            initAPI();
+        else
             throw new RuntimeException("Invalid platform name");
         softAssert = new SoftAssert();
         screen = new Screen();
@@ -143,20 +153,15 @@ public class CommonOps extends Base {
                 ((JavascriptExecutor) driver).executeScript("window.focus();");
                 wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"), 0));
                 MonteScreenRecorder.startRecord(method.getName());
-            } else {
-
-                //                ((CanRecordScreen) mobileDriver).startRecordingScreen(new BaseStartScreenRecordingOptions() {
-//                    @Override
-//                    public BaseStartScreenRecordingOptions withTimeLimit(Duration timeLimit) {
-//                        return super.withTimeLimit(Duration.ofMinutes(2));
-//                    }
-//                });
-
+            }
+            else {
+//                ((CanRecordScreen) mobileDriver).startRecordingScreen();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
  //   --      @AfterMethod
     @AfterMethod
     public void afterMethod() {
@@ -169,9 +174,12 @@ public class CommonOps extends Base {
 //   ---            @AfterClass
    @AfterClass
     public void closeSession(){
-    if (isMobile())
-        mobileDriver.quit();
-    else
-            driver.quit();
+       if (!isAPI()) {
+           if (isMobile())
+               mobileDriver.quit();
+           else
+               driver.quit();
+       }
     }
+
 }

@@ -38,40 +38,41 @@ public class Listeners extends CommonOps implements ITestListener {
 
     public void onTestSuccess (ITestResult test) {
         System.out.println(" ----------  SUCCESS! ----------- Test: " + test.getName() + " Passed ------------------");
-
-        if (isWeb()) {
-            try {
-                MonteScreenRecorder.stopRecord();
-//                   ((CanRecordScreen) mobileDriver).stopRecordingScreen();
-            } catch (Exception e){
-                e.printStackTrace();
+        if (!isAPI()) {
+            if (isWeb()) {
+                //   Stop Recording
+                try {
+                    MonteScreenRecorder.stopRecord();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                // Delete recorded file
+                File file = new File("./test-recordings/" + test.getName() + ".avi");
+                if (file.delete())
+                    System.out.println("File was deleted successfully");
+                else
+                    System.out.println("Failed to delete the file");
             }
-        }
-
-
-        if (isWeb()) {
-            // Delete recorded file
-            File file = new File("./test-recordings/" + test.getName() + ".avi");
-            if (file.delete())
-                System.out.println("File was deleted successfully");
-            else
-                System.out.println("Failed to delete the file");
+            else {
+                ((CanRecordScreen) mobileDriver).stopRecordingScreen();
+            }
         }
     }
 
     public void onTestFailure (ITestResult test) {
-
         System.out.println("---------------------- Test "  + test.getName() + " Failed ------------------");
-        try {
-            if (isWeb())
-                MonteScreenRecorder.stopRecord();
-        } catch (Exception e){
-            System.out.println("Error recording video of screen :" + e);
-            e.printStackTrace();
+        if (!isAPI()) {
+            if (isWeb()) {
+                try {
+                    MonteScreenRecorder.stopRecord();
+                } catch (Exception e) {
+                    System.out.println("Error recording video of screen :" + e);
+                    e.printStackTrace();
+                }
+            }
+            saveScreenshot();
+            System.out.println(new Date(test.getStartMillis()) + test.getName() + "SCREENSHOT TAKEN : ");
         }
-        System.out.println(new Date(test.getStartMillis()  ) + test.getName() + "SCREENSHOT TAKEN : ");
-
-        saveScreenshot();
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {

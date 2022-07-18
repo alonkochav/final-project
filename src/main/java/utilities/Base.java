@@ -2,12 +2,16 @@ package utilities;
 
  import io.appium.java_client.AppiumDriver;
  import io.appium.java_client.android.AndroidDriver;
+ import io.restassured.response.Response;
+ import org.json.simple.JSONObject;
  import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.interactions.Actions;
-import org.sikuli.script.Screen;
-import org.testng.asserts.SoftAssert;
+ import org.openqa.selenium.remote.DesiredCapabilities;
+ import org.openqa.selenium.support.ui.WebDriverWait;
+ import org.openqa.selenium.interactions.Actions;
+ import org.sikuli.script.Screen;
+ import org.testng.asserts.SoftAssert;
+ import io.restassured.specification.RequestSpecification;
+ import io.restassured.path.json.JsonPath;
 
 public class Base {
 
@@ -24,6 +28,12 @@ public class Base {
     protected static AndroidDriver mobileDriver;
     protected static DesiredCapabilities dc = new DesiredCapabilities();
 
+    // Rest API
+
+    protected static RequestSpecification httpRequest;
+    protected static Response response;
+    protected static JSONObject params = new JSONObject();
+    protected static JsonPath jp = new JsonPath();
 
     // Page Objects - Web
     protected static pageObjects.grafana.LoginPage grafanaLogin;

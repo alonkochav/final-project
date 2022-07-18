@@ -21,7 +21,7 @@ public class TestGrafanaWeb extends CommonOps {
     @Test(description = "Test 01 - Verify Header")
     @Description ("This Test logs in and verifies the main header")
     public void test01_verifyHeader(){
-        WebFlows.login("admin", "admin");
+        WebFlows.login(getData("username"),getData("password"));
         Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
     }
 
