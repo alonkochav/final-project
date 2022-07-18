@@ -2,7 +2,6 @@ package utilities;
 
  import io.appium.java_client.AppiumDriver;
  import io.appium.java_client.android.AndroidDriver;
- import io.restassured.response.Response;
  import org.json.simple.JSONObject;
  import org.openqa.selenium.WebDriver;
  import org.openqa.selenium.remote.DesiredCapabilities;
@@ -11,6 +10,7 @@ package utilities;
  import org.sikuli.script.Screen;
  import org.testng.asserts.SoftAssert;
  import io.restassured.specification.RequestSpecification;
+ import io.restassured.response.Response;
  import io.restassured.path.json.JsonPath;
 
 public class Base {
@@ -33,7 +33,7 @@ public class Base {
     protected static RequestSpecification httpRequest;
     protected static Response response;
     protected static JSONObject params = new JSONObject();
-    protected static JsonPath jp = new JsonPath();
+    protected static JsonPath jp;
 
     // Page Objects - Web
     protected static pageObjects.grafana.LoginPage grafanaLogin;

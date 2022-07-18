@@ -54,7 +54,7 @@ public class Listeners extends CommonOps implements ITestListener {
                     System.out.println("Failed to delete the file");
             }
             else {
-                ((CanRecordScreen) mobileDriver).stopRecordingScreen();
+//                ((CanRecordScreen) mobileDriver).stopRecordingScreen();
             }
         }
     }
