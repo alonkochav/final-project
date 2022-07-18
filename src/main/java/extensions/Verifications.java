@@ -1,6 +1,7 @@
 package extensions;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidElement;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,11 +14,14 @@ import static org.testng.Assert.*;
 
 public class Verifications extends CommonOps {
 
+    // Mobile
     @Step ("Verify Text in Elements")
-    public static void verifyTextInMobileElement(MobileElement elem, String expected){
+    public static void verifyTextInMobileElement(AndroidElement elem, String expected){
         wait.until(ExpectedConditions.visibilityOf(elem));
         assertEquals(elem.getText(), expected);
     }
+
+    // Web
     @Step ("Verify Text in Elements")
     public static void verifyTextInElement(WebElement elem, String expected){
         wait.until(ExpectedConditions.visibilityOf(elem));
@@ -61,4 +65,8 @@ public class Verifications extends CommonOps {
         assertFalse(elems.size() > 0);
     }
 
+    @Step("Verify Text with Text in Rest API")
+    public static void verifyText(String actual, String expected){
+        assertEquals(actual,expected);
+    }
 }
