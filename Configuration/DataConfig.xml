@@ -5,7 +5,7 @@
     <Timeout>10</Timeout>
 
     <!--    General-->
-    <PlatformName>mobile</PlatformName>]
+    <PlatformName>api</PlatformName>]
 
     <!--     Auth -->
     <username>admin</username>

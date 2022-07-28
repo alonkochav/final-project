@@ -12,7 +12,7 @@ public class APIActions extends CommonOps {
     @Step("Get Data From Server")
     public static Response get(String paramValues){
         response = httpRequest.get(paramValues);
-        response.prettyPrint();
+//        response.prettyPrint();
         return response;
     }
 

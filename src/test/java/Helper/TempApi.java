@@ -23,24 +23,24 @@ public class TempApi {
         httpRequest = RestAssured.given().auth().preemptive().basic("admin","admin");
 
         // Get Request
-        response = httpRequest.get("api/teams/search?perpage=50&page=1");
+        response = httpRequest.get("api/teams/search");
 
         // Post + Put Request
-            JSONObject params = new JSONObject();
-
-            response = httpRequest.get("api/teams/search?perpage=50&page=1");
-
-            params.put("name","Ateam");
-            params.put("email","Ateam@gmail.com");
-
-            httpRequest.header("Content-Type","application/json");
-//            httpRequest.body("{'name':'Ateam','email':'Ateam@gmail.com'}");
-
-            httpRequest.body(params.toJSONString());
-            response = httpRequest.post("/api/teams");
-
-//            response = httpRequest.put("/api/teams/3")
-//            response = httpRequest.delete("/api/teams/3")
+//            JSONObject params = new JSONObject();
+//
+//            response = httpRequest.get("api/teams/search?perpage=50&page=1");
+//
+//            params.put("name","Ateam");
+//            params.put("email","Ateam@gmail.com");
+//
+//            httpRequest.header("Content-Type","application/json");
+////            httpRequest.body("{'name':'Ateam','email':'Ateam@gmail.com'}");
+//
+//            httpRequest.body(params.toJSONString());
+//            response = httpRequest.post("/api/teams");
+//
+////            response = httpRequest.put("/api/teams/3")
+////            response = httpRequest.delete("/api/teams/3")
 
 
             prettyPrint(response);

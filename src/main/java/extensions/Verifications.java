@@ -21,7 +21,7 @@ public class Verifications extends CommonOps {
         assertEquals(elem.getText(), expected);
     }
 
-    // Web
+    // Web   &&   Mobile
     @Step ("Verify Text in Elements")
     public static void verifyTextInElement(WebElement elem, String expected){
         wait.until(ExpectedConditions.visibilityOf(elem));
@@ -65,6 +65,7 @@ public class Verifications extends CommonOps {
         assertFalse(elems.size() > 0);
     }
 
+    // Rest API
     @Step("Verify Text with Text in Rest API")
     public static void verifyText(String actual, String expected){
         assertEquals(actual,expected);
