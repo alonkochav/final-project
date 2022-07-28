@@ -70,4 +70,10 @@ public class Verifications extends CommonOps {
     public static void verifyText(String actual, String expected){
         assertEquals(actual,expected);
     }
+
+    @Step("Verify Count in Rest API")
+    public static void verifyCount(int actual, int expected){
+        assertEquals(actual,expected);
+    }
+
 }

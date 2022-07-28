@@ -15,7 +15,7 @@ import workflows.MobileFlows;
 public class TestMortgageMobile extends CommonOps {
 
     protected AndroidDriver mobileDriver = null;
-    private DesiredCapabilities dc = new DesiredCapabilities();
+    private final DesiredCapabilities dc = new DesiredCapabilities();
 
     @Test
     public void test01_verifyMortgage() {

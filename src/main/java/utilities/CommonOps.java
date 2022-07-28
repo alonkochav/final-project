@@ -45,7 +45,8 @@ public class CommonOps extends Base {
     public boolean isMobile() {
         return getData("PlatformName").equalsIgnoreCase("mobile");
     }
-    public boolean isAPI() { return getData("PlatformName").equalsIgnoreCase("api");
+    public boolean isAPI() {
+        return getData("PlatformName").equalsIgnoreCase("api");
     }
 
     public static String getData(String nodeName) {
