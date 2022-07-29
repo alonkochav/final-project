@@ -38,9 +38,16 @@
             Select dropDown = new Select(elem);
             dropDown.selectByVisibleText(text);
         }
-    
-        @Step("Mouse Hover")
+
+        // In case of nested subMenu
+        @Step("OVERLOAD #1 Double Mouse Hover - 2 Elements")
         public static void mouseHover(WebElement elem1, WebElement elem2) {
             action.moveToElement(elem1).moveToElement(elem2).click().build().perform();
+        }
+
+        // In case of Electron ToDoList
+        @Step("OVERLOAD #2  Mouse Hover")
+        public static void mouseHover(WebElement elem1 {
+            action.moveToElement(elem1).click().build().perform();
         }
     }

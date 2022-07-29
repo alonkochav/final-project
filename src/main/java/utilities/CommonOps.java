@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -47,6 +48,9 @@ public class CommonOps extends Base {
     }
     public boolean isAPI() {
         return getData("PlatformName").equalsIgnoreCase("api");
+    }
+    public boolean isElectron() {
+        return getData("PlatformName").equalsIgnoreCase("electron");
     }
 
     public static String getData(String nodeName) {
@@ -124,9 +128,22 @@ public class CommonOps extends Base {
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
     }
 
+    //   Rest API
+
     public static void initAPI() {
         RestAssured.baseURI = getData("urlAPI");
         httpRequest = RestAssured.given().auth().preemptive().basic(getData("username"),getData("password"));
+    }
+
+    //  Electron Driver
+    public static void initElectron() {
+        System.setProperty("webdriver.chrome.driver",getData("ElectronDriverPath"));
+        ChromeOptions opt = new ChromeOptions();
+        dc.setCapability("chromeOptions",opt);
+        dc.setBrowserName("chrome");
+        driver = new ChromeDriver(dc);
+        ManagePages.initToDo();
+
     }
 
     //  ---    BeforeClass
@@ -138,6 +155,8 @@ public class CommonOps extends Base {
             initMobile();
         else if (isAPI())
             initAPI();
+        else if (isElectron())
+            initElectron();
         else
             throw new RuntimeException("Invalid platform name");
         softAssert = new SoftAssert();

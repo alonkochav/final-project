@@ -1,6 +1,5 @@
 package utilities;
 
- import io.appium.java_client.AppiumDriver;
  import io.appium.java_client.android.AndroidDriver;
  import org.json.simple.JSONObject;
  import org.openqa.selenium.WebDriver;
@@ -12,6 +11,7 @@ package utilities;
  import io.restassured.specification.RequestSpecification;
  import io.restassured.response.Response;
  import io.restassured.path.json.JsonPath;
+ import pageObjects.mortgage.MainPage;
 
 public class Base {
 
@@ -46,6 +46,11 @@ public class Base {
 
     // Page Objects - Mobile
     protected static pageObjects.mortgage.MainPage mortgageMain;
+
+    // Page Objects - Electron
+    protected static pageObjects.todo.MainPage todoMain;
+
+
 
 
 }

@@ -25,6 +25,13 @@
     <!--     API -->
     <urlAPI>http://localhost:3000/</urlAPI>
 
+    <!--     Electron -->
+    <ElectronDriverPath>./Drivers/electrondriver.exe</ElectronDriverPath>
+    <ElectronAppPath>C:\\Users\\DELL\\AppData\\Local\\Programs\\Todolist.exe</ElectronAppPath>
+
+
+
+
 
     <!-- DDT Driven Testing -->
     <DDTFile>.\\DDTFiles\\users.csv</DDTFile>

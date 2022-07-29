@@ -1,6 +1,7 @@
 package utilities;
 
 import org.openqa.selenium.support.PageFactory;
+import pageObjects.mortgage.MainPage;
 
 public class ManagePages extends Base{
 
@@ -11,10 +12,15 @@ public class ManagePages extends Base{
         grafanaServerAdmin = PageFactory.initElements(driver, pageObjects.grafana.ServerAdminMenuPage.class);
         grafanaServerAdminMain = PageFactory.initElements(driver, pageObjects.grafana.ServerAdminMainPage.class);
         grafanaAddNewUser = PageFactory.initElements(driver, pageObjects.grafana.AddNewUserPage.class);
-        grafanaEditUser = PageFactory.initElements(driver, pageObjects.grafana.EditUserPage.class);
+        grafanaEditUser = PageFactory.initElements(driver, pageObjectsz`grafana.EditUserPage.class);
     }
 
-    public static void initMortgage(){
-        mortgageMain = new pageObjects.mortgage.MainPage(mobileDriver);
+
+    public static void initMortgage() {
+            mortgageMain = new MainPage(mobileDriver);
+    }
+
+    public static void initToDo(() {
+        todoMain = PageFactory.initElements(driver, pageObjects.todo.MainPage.class);
     }
 }
