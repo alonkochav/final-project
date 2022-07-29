@@ -1,6 +1,5 @@
 package extensions;
 
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
@@ -71,7 +70,7 @@ public class Verifications extends CommonOps {
         assertEquals(actual,expected);
     }
 
-    @Step("Verify Count in Rest API")
+    @Step("Verify Count of Elements")
     public static void verifyCount(int actual, int expected){
         assertEquals(actual,expected);
     }

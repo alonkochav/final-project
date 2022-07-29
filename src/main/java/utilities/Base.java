@@ -11,7 +11,6 @@ package utilities;
  import io.restassured.specification.RequestSpecification;
  import io.restassured.response.Response;
  import io.restassured.path.json.JsonPath;
- import pageObjects.mortgage.MainPage;
 
 public class Base {
 

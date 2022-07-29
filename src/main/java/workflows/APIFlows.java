@@ -12,18 +12,19 @@ public class APIFlows extends CommonOps {
     public static int[] intArray = null;
     public static int max = Integer.MIN_VALUE;
 
-
+    @Step("Business Flow : Trim first and last character from String")
     public static String removeFirstAndLastChar(String str) {
         str = str.substring(1, str.length() - 1);
         return str;
     }
 
+    @Step("Business Flow : Find Max of 2 numbers")
     public static int findMax(int num1, int num2){
         max = Math.max(num1, num2);
         return max;
     }
 
-    @Step("Business Flow : Get Last Team ID")
+    @Step("Business Flow : Get all Team IDs as String")
     public static String getAllTeams(String jPath){
         response = APIActions.get(allTeamsPath+"search");
         String arrStr = APIActions.extractFromJson(response, jPath);
@@ -90,10 +91,10 @@ public class APIFlows extends CommonOps {
         params.put("name",newName);
         params.put("email",newEmail);
         APIActions.put(params,"/api/teams/" + id);
+    }
 
-    }    @Step("Business Flow : Update Existing Team in Grafana")
+    @Step("Business Flow : Update Existing Team in Grafana")
     public static void updateTeamEmail(String newEmail, int id){
-        params.put("name","");
         params.put("email",newEmail);
         APIActions.patch(params,"/api/teams/" + id);
 

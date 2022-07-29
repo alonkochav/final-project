@@ -32,6 +32,12 @@
                 elem.sendKeys(ch+ "");
             }
         }
+
+        @Step("Update Text Element")
+        public static void submitKey(WebElement elem, Keys value) {
+            wait.until(ExpectedConditions.visibilityOf(elem));
+            elem.sendKeys(value);
+        }
     
         @Step("Update Dropdown Element")
         public static void updateDropDown(WebElement elem, String text) {

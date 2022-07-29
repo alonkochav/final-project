@@ -1,7 +1,6 @@
 package utilities;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.screenrecording.BaseStartScreenRecordingOptions;
@@ -139,10 +138,14 @@ public class CommonOps extends Base {
     public static void initElectron() {
         System.setProperty("webdriver.chrome.driver",getData("ElectronDriverPath"));
         ChromeOptions opt = new ChromeOptions();
+        opt.setBinary(getData("ElectronAppPath"));
         dc.setCapability("chromeOptions",opt);
         dc.setBrowserName("chrome");
         driver = new ChromeDriver(dc);
         ManagePages.initToDo();
+        driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
+
 
     }
 
