@@ -12,7 +12,7 @@ public class ManagePages extends Base{
         grafanaServerAdmin = PageFactory.initElements(driver, pageObjects.grafana.ServerAdminMenuPage.class);
         grafanaServerAdminMain = PageFactory.initElements(driver, pageObjects.grafana.ServerAdminMainPage.class);
         grafanaAddNewUser = PageFactory.initElements(driver, pageObjects.grafana.AddNewUserPage.class);
-        grafanaEditUser = PageFactory.initElements(driver, pageObjectsz`grafana.EditUserPage.class);
+        grafanaEditUser = PageFactory.initElements(driver, pageObjects.grafana.EditUserPage.class);
     }
 
 
@@ -20,7 +20,7 @@ public class ManagePages extends Base{
             mortgageMain = new MainPage(mobileDriver);
     }
 
-    public static void initToDo(() {
+    public static void initToDo() {
         todoMain = PageFactory.initElements(driver, pageObjects.todo.MainPage.class);
     }
 }

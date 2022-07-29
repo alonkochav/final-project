@@ -22,7 +22,8 @@
             wait.until(ExpectedConditions.visibilityOf(elem));
             elem.sendKeys(text);
         }
-
+        
+        @SuppressWarnings("deprecated")
         @Step("Update Text Element as Human")
         public static void updateTextHuman(WebElement elem, String text) {
             wait.until(ExpectedConditions.visibilityOf(elem));
@@ -46,8 +47,8 @@
         }
 
         // In case of Electron ToDoList
-        @Step("OVERLOAD #2  Mouse Hover")
-        public static void mouseHover(WebElement elem1 {
+        @Step("OVERLOAD #2  Single Mouse Hover")
+        public static void mouseHover(WebElement elem1) {
             action.moveToElement(elem1).click().build().perform();
         }
     }
