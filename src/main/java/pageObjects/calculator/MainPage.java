@@ -6,6 +6,9 @@ import org.openqa.selenium.support.How;
 
 public class MainPage {
 
+        @FindBy(how = How.CLASS_NAME, using = "Clear")
+        public WebElement btn_clear;
+
         @FindBy(how = How.CLASS_NAME, using = "One")
         public WebElement btn_one;
 
@@ -18,7 +21,7 @@ public class MainPage {
         @FindBy(how = How.CLASS_NAME, using = "Equals")
         public WebElement btn_equals;
 
-        @FindBy(how = How.CLASS_NAME, using = "//*[@AutonmationID = 'CalculatorResults']")
+        @FindBy(how = How.XPATH, using = "//*[@AutonmationID = 'CalculatorResults']")
         public WebElement field_result;
 
 }
