@@ -29,7 +29,7 @@ public class TestTodoListElectron extends CommonOps {
         ElectronFlows.addNewTask("Learn Java");
         ElectronFlows.addNewTask("Learn C#");
         ElectronFlows.addNewTask("Learn Python");
-        Verifications.numberOfElements(todoMain.list_tasks,22);
+        Verifications.numberOfElements(todoMain.list_tasks,3);
     }
 
 }
