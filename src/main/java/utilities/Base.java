@@ -51,6 +51,9 @@ public class Base {
     // Page Objects - Electron
     protected static pageObjects.todo.MainPage todoMain;
 
+    // Page Objects - Desktop
+    protected static pageObjects.calculator.MainPage calcMain;
+
 
 
 

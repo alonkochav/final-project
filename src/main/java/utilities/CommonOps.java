@@ -155,7 +155,7 @@ public class CommonOps extends Base {
         } catch (MalformedURLException e) {
 //            System.out.println("Could not connect to Appium Server, See Details : " + e);
         }
-        //TODO Call ManagePages Method for Desktop
+        ManagePages.initCalculator();
     }
 
     //  ---    BeforeClass
