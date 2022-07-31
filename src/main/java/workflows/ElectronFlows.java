@@ -9,7 +9,7 @@ public class ElectronFlows extends CommonOps {
 
     @Step("Add New Task to the List")
     public static void addNewTask(String taskName){
-        UIActions.updateText(todoMain.txt_create, taskName);
+        UIActions.updateTextHuman(todoMain.txt_create, taskName);
         UIActions.submitKey(todoMain.txt_create, Keys.RETURN);
     }
 
@@ -18,5 +18,11 @@ public class ElectronFlows extends CommonOps {
         return todoMain.list_tasks.size();
     }
 
+    @Step("Empty Task List")
+    public static void emptyList(){
+        for (int i=0; i < getTaskCount(); i++){
+            UIActions.mouseHover(todoMain.btn_delete);
+        }
+    }
 
 }

@@ -8,9 +8,11 @@ import java.util.List;
 
 public class MainPage {
 
-
     @FindBy(how = How.CSS, using = "input[placeholder='Create a task']")
     public WebElement txt_create;
+
+    @FindBy(how = How.CSS, using = "svg.destroy_19w1q")
+    public WebElement btn_delete;
 
     @FindBy(how = How.CLASS_NAME, using = "view_2Ow90")
     public  List<WebElement> list_tasks;

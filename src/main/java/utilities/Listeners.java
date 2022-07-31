@@ -38,8 +38,8 @@ public class Listeners extends CommonOps implements ITestListener {
 
     public void onTestSuccess (ITestResult test) {
         System.out.println(" ----------  SUCCESS! ----------- Test: " + test.getName() + " Passed ------------------");
-        if (!isAPI()) {
-            if (isWeb()) {
+        if (!isAPI() || !isMobile()) {
+//            if (isWeb() || isElectron()) {
                 //   Stop Recording
                 try {
                     MonteScreenRecorder.stopRecord();
@@ -52,17 +52,17 @@ public class Listeners extends CommonOps implements ITestListener {
                     System.out.println("File was deleted successfully");
                 else
                     System.out.println("Failed to delete the file");
-            }
-            else {
-//                ((CanRecordScreen) mobileDriver).stopRecordingScreen();
-            }
+//            }
+//            else {
+////                ((CanRecordScreen) mobileDriver).stopRecordingScreen();
+//            }
         }
     }
 
     public void onTestFailure (ITestResult test) {
         System.out.println("---------------------- Test "  + test.getName() + " Failed ------------------");
         if (!isAPI()) {
-            if (isWeb()) {
+            if (isWeb() || isElectron()) {
                 try {
                     MonteScreenRecorder.stopRecord();
                 } catch (Exception e) {
@@ -88,6 +88,7 @@ public class Listeners extends CommonOps implements ITestListener {
         if (isMobile())
             return ((TakesScreenshot)mobileDriver).getScreenshotAs(OutputType.BYTES);
         else
+            System.out.println("ScreenShot taken!");
             return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 
     }

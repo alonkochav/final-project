@@ -3,9 +3,10 @@
 
     <!--     Timeout -->
     <Timeout>10</Timeout>
+    <KeyStrokeDelay>200</KeyStrokeDelay>
 
     <!--    General-->
-    <PlatformName>api</PlatformName>]
+    <PlatformName>electron</PlatformName>]
 
     <!--     Auth -->
     <username>admin</username>
@@ -26,8 +27,8 @@
     <urlAPI>http://localhost:3000/</urlAPI>
 
     <!--     Electron -->
-    <ElectronDriverPath>./Drivers/electrondriver.exe</ElectronDriverPath>
-    <ElectronAppPath>C:\\Users\\DELL\\AppData\\Local\\Programs\\Todolist.exe</ElectronAppPath>
+    <ElectronDriverPath>.\Drivers\electrondriver.exe</ElectronDriverPath>
+    <ElectronAppPath>C:/Users/DELL/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
 
     <!-- DDT Driven Testing -->

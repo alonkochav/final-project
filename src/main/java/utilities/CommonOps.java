@@ -27,6 +27,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
+import workflows.ElectronFlows;
 
 import java.lang.reflect.Method;
 
@@ -88,7 +89,6 @@ public class CommonOps extends Base {
         wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
         driver.get(getData("url"));
         ManagePages.initGrafana();
-        action = new Actions(driver);
     }
 
     public static WebDriver initChromeDriver() {
@@ -145,24 +145,24 @@ public class CommonOps extends Base {
         ManagePages.initToDo();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
-
-
     }
 
     //  ---    BeforeClass
     @BeforeClass
     public void startSession() {
-        if (isWeb())
+        if (isElectron())
+            initElectron();
+        else if (isWeb())
             initBrowser(getData("BrowserName"));
         else if (isMobile())
             initMobile();
         else if (isAPI())
             initAPI();
-        else if (isElectron())
-            initElectron();
+
         else
             throw new RuntimeException("Invalid platform name");
         softAssert = new SoftAssert();
+        action = new Actions(driver);
         screen = new Screen();
     }
 
@@ -172,7 +172,7 @@ public class CommonOps extends Base {
     @BeforeMethod
     public void beforeMethod(Method method) {
         try {
-            if (isWeb()){
+            if (isWeb() || isElectron()){
                 ((JavascriptExecutor) driver).executeScript("window.focus();");
                 wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"), 0));
                 MonteScreenRecorder.startRecord(method.getName());
@@ -191,6 +191,8 @@ public class CommonOps extends Base {
         if (isWeb()) {
             driver.get(getData("url"));
             ((JavascriptExecutor) driver).executeScript("window.focus();");
+        } else if (isElectron()){
+            ElectronFlows.emptyList();
         }
     }
 

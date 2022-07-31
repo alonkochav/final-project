@@ -28,14 +28,13 @@
         public static void updateTextHuman(WebElement elem, String text) {
             wait.until(ExpectedConditions.visibilityOf(elem));
             for (char ch : text.toCharArray()){
-                Uninterruptibles.sleepUninterruptibly(250, TimeUnit.MILLISECONDS);
+                Uninterruptibles.sleepUninterruptibly(Long.parseLong(getData("KeyStrokeDelay")), TimeUnit.MILLISECONDS);
                 elem.sendKeys(ch+ "");
             }
         }
 
         @Step("Update Text Element")
         public static void submitKey(WebElement elem, Keys value) {
-            wait.until(ExpectedConditions.visibilityOf(elem));
             elem.sendKeys(value);
         }
     
