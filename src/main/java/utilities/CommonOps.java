@@ -118,14 +118,14 @@ public class CommonOps extends Base {
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getData("AppPackage"));
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getData("AppActivity"));
         try {
-            mobileDriver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), dc);
+            mobileDriver = new AndroidDriver(new URL(getData("AppiumServer")+ "wd/hub"), dc);
 
         } catch (Exception e) {
             System.out.println("Cannot Connect to Appium Server. See details: " + e);
         }
-        ManagePages.initMortgage();
         mobileDriver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
+        ManagePages.initMortgage();
     }
 
     //   Rest API
@@ -143,9 +143,9 @@ public class CommonOps extends Base {
         dc.setCapability("chromeOptions",opt);
         dc.setBrowserName("chrome");
         driver = new ChromeDriver(dc);
-        ManagePages.initToDo();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
+        ManagePages.initToDo();
     }
 
     public static void initDesktop() {
@@ -155,12 +155,15 @@ public class CommonOps extends Base {
         } catch (MalformedURLException e) {
 //            System.out.println("Could not connect to Appium Server, See Details : " + e);
         }
+        driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
         ManagePages.initCalculator();
     }
 
     //  ---    BeforeClass
     @BeforeClass
     public void startSession() {
+
         if (isWeb())
             initBrowser(getData("BrowserName"));
         else if (isMobile())
@@ -174,11 +177,10 @@ public class CommonOps extends Base {
         else
             throw new RuntimeException("Invalid platform name");
         softAssert = new SoftAssert();
-        action = new Actions(driver);
         screen = new Screen();
+        if (!isDesktop() && !isAPI())
+            action = new Actions(driver);
     }
-
-
 
     //  ---    BeforeMethod
 

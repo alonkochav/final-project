@@ -65,7 +65,7 @@ public class Verifications extends CommonOps {
     }
 
     // Rest API
-    @Step("Verify Text with Text in Rest API")
+    @Step("Verify Text with Text  ")
     public static void verifyText(String actual, String expected){
         assertEquals(actual,expected);
     }

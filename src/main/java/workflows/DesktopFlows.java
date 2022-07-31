@@ -1,14 +1,14 @@
 package workflows;
 
 import extensions.UIActions;
+import io.appium.java_client.MobileBy;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
 import utilities.CommonOps;
 
 public class DesktopFlows extends CommonOps {
 
     @Step("Calculate Addition: 1 + 8 ")
-    public static void calculateAddition(){
+    public static void calculateAddition() {
         UIActions.click(calcMain.btn_clear);
         UIActions.click(calcMain.btn_one);
         UIActions.click(calcMain.btn_plus);

@@ -6,7 +6,7 @@
     <KeyStrokeDelay>200</KeyStrokeDelay>
 
     <!--    General-->
-    <PlatformName>electron</PlatformName>]
+    <PlatformName>desktop</PlatformName>]
 
     <!--     Auth -->
     <username>admin</username>
@@ -24,7 +24,7 @@
     <UDID>PF49SG9PYLCMBMUK</UDID>
     <AppPackage>com.shivgadhia.android.ukMortgageCalc</AppPackage>
     <AppActivity>.MainActivity</AppActivity>
-    <AppiumServer>http://localhost:4723/wd/hub</AppiumServer>
+    <AppiumServer>http://127.0.0.1:4723/</AppiumServer>
 
     <!--     API -->
     <urlAPI>http://localhost:3000/</urlAPI>
