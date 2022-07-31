@@ -17,6 +17,9 @@
     <url>http://127.0.0.1:3000/</url>
     <ImageRepo>D:\\Automation\\final-project\\ImageRepository\\</ImageRepo>
 
+    <!-- DDT Driven Testing -->
+    <DDTFile>.\\DDTFiles\\users.csv</DDTFile>
+
     <!--    Mobile  -->
     <UDID>PF49SG9PYLCMBMUK</UDID>
     <AppPackage>com.shivgadhia.android.ukMortgageCalc</AppPackage>
@@ -30,8 +33,13 @@
     <ElectronDriverPath>.\Drivers\electrondriver.exe</ElectronDriverPath>
     <ElectronAppPath>C:/Users/DELL/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
+    <!--     Electron -->
+    <ElectronDriverPath>.\Drivers\electrondriver.exe</ElectronDriverPath>
+    <ElectronAppPath>C:/Users/DELL/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
-    <!-- DDT Driven Testing -->
-    <DDTFile>.\\DDTFiles\\users.csv</DDTFile>
+    <!-- Desktop -->
+    <CalculatorApp>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App</CalculatorApp>
+
+
 
 </Environment>

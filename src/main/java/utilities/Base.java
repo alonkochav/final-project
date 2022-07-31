@@ -1,6 +1,7 @@
 package utilities;
 
  import io.appium.java_client.android.AndroidDriver;
+ import io.appium.java_client.windows.WindowsDriver;
  import org.json.simple.JSONObject;
  import org.openqa.selenium.WebDriver;
  import org.openqa.selenium.remote.DesiredCapabilities;
@@ -22,6 +23,7 @@ public class Base {
 
     // Web
     protected static WebDriver driver;
+
 
     // Mobile
     protected static AndroidDriver mobileDriver;

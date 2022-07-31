@@ -5,6 +5,7 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.screenrecording.BaseStartScreenRecordingOptions;
 import io.appium.java_client.screenrecording.CanRecordScreen;
+import io.appium.java_client.windows.WindowsDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import io.restassured.RestAssured;
@@ -34,6 +35,7 @@ import java.lang.reflect.Method;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -49,9 +51,8 @@ public class CommonOps extends Base {
     public boolean isAPI() {
         return getData("PlatformName").equalsIgnoreCase("api");
     }
-    public boolean isElectron() {
-        return getData("PlatformName").equalsIgnoreCase("electron");
-    }
+    public boolean isElectron() {return getData("PlatformName").equalsIgnoreCase("electron");}
+    public boolean isDesktop() {return getData("PlatformName").equalsIgnoreCase("desktop");}
 
     public static String getData(String nodeName) {
         File fXmlFile;
@@ -147,24 +148,36 @@ public class CommonOps extends Base {
         wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
     }
 
+    public static void initDesktop() {
+        dc.setCapability("app",getData("CalculatorApp"));
+        try {
+            driver = new WindowsDriver(new URL( getData("AppiumServer")), dc);
+        } catch (MalformedURLException e) {
+//            System.out.println("Could not connect to Appium Server, See Details : " + e);
+        }
+        //TODO Call ManagePages Method for Desktop
+    }
+
     //  ---    BeforeClass
     @BeforeClass
     public void startSession() {
-        if (isElectron())
-            initElectron();
-        else if (isWeb())
+        if (isWeb())
             initBrowser(getData("BrowserName"));
         else if (isMobile())
             initMobile();
         else if (isAPI())
             initAPI();
-
+        else if (isElectron())
+            initElectron();
+        else if (isDesktop())
+            initDesktop();
         else
             throw new RuntimeException("Invalid platform name");
         softAssert = new SoftAssert();
         action = new Actions(driver);
         screen = new Screen();
     }
+
 
 
     //  ---    BeforeMethod
