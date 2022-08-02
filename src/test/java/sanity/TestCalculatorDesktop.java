@@ -18,8 +18,8 @@ public class TestCalculatorDesktop extends CommonOps {
     @Test(description = "Test 01 - Verify Addition Command")
     @Description("This Test Verifies the Addition Command")
     public void test01_verifyAdditionCommand(){
-        DesktopFlows.calculateAddition();
-        Verifications.verifyTextInElement(calcMain.field_result,"Display is 9");
-        Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
+        DesktopFlows.calculateAddition(1,8);
+        Verifications.verifyTextInElement(calcMain.field_result,"Display is 39");
+        Uninterruptibles.sleepUninterruptibly(12, TimeUnit.SECONDS);
     }
 }

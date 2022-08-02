@@ -187,14 +187,22 @@ public class CommonOps extends Base {
     @BeforeMethod
     public void beforeMethod(Method method) {
         try {
-            if (isWeb() || isElectron()){
-                ((JavascriptExecutor) driver).executeScript("window.focus();");
-                wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"), 0));
-                MonteScreenRecorder.startRecord(method.getName());
+            if (!isAPI()){
+                if (!isMobile()){
+                    MonteScreenRecorder.startRecord(method.getName());
+                }
+                else if (isMobile()){
+                    ((JavascriptExecutor) mobileDriver).executeScript("window.focus();");
+                    ((CanRecordScreen) mobileDriver).startRecordingScreen();
+                }
+                else {
+                    ((JavascriptExecutor) driver).executeScript("window.focus();");
+                    wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"), 0));
+                }
             }
-            else {
-//                ((CanRecordScreen) mobileDriver).startRecordingScreen();
-            }
+
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

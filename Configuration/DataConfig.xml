@@ -2,11 +2,11 @@
 <Environment>
 
     <!--     Timeout -->
-    <Timeout>10</Timeout>
-    <KeyStrokeDelay>200</KeyStrokeDelay>
+    <Timeout>13</Timeout>
+    <KeyStrokeDelay>250</KeyStrokeDelay>
 
     <!--    General-->
-    <PlatformName>desktop</PlatformName>]
+    <PlatformName>api</PlatformName>
 
     <!--     Auth -->
     <username>admin</username>
@@ -15,7 +15,7 @@
     <!--     Web -->
     <BrowserName>chrome</BrowserName>
     <url>http://127.0.0.1:3000/</url>
-    <ImageRepo>D:\\Automation\\final-project\\ImageRepository\\</ImageRepo>
+    <ImageRepo>D:/Automation/final-project/ImageRepository/</ImageRepo>
 
     <!-- DDT Driven Testing -->
     <DDTFile>.\\DDTFiles\\users.csv</DDTFile>

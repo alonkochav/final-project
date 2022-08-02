@@ -67,7 +67,7 @@ public class TestGrafanaWeb extends CommonOps {
         ((JavascriptExecutor) driver).executeScript("window.focus();");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
 //        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
-        Verifications.visualElement("GrafanaAvatar");
+        Verifications.visualElement("Avatar");
     }
 
     @Test (description = "Test 07 - Search Users", dataProvider = "data-provider-users", dataProviderClass = utilities.ManageDDT.class)

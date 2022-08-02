@@ -36,9 +36,9 @@ public class TestGrafanaAPI extends CommonOps {
     @Test (description = "Test 03 - Update Team in Grafana")
     @Description("This Test Updates the Selected Team and Verifies it")
     public void test03_updateTeam() {
-        lastID = APIFlows.getLastTeamID("teams[0].id");
+        lastID = APIFlows.getLastTeamID("teams.id");
         APIFlows.updateTeam("111111", "1team@gmail.com", lastID);
-        Verifications.verifyText(APIFlows.getTeamProperty("teams[0].id"), "117");
+        Verifications.verifyText(APIFlows.getTeamProperty("teams[0].id"), "1");
 
     }
 
