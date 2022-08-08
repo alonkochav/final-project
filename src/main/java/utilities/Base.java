@@ -13,6 +13,9 @@ package utilities;
  import io.restassured.response.Response;
  import io.restassured.path.json.JsonPath;
 
+ import java.sql.Connection;
+ import java.sql.Statement;
+
 public class Base {
 
     // General
@@ -35,6 +38,13 @@ public class Base {
     protected static Response response;
     protected static JSONObject params = new JSONObject();
     protected static JsonPath jp;
+
+    // Database
+    protected static Connection con;
+    protected static Statement stmt;
+    protected static Result result;
+
+
 
     // Page Objects - Web
     protected static pageObjects.grafana.LoginPage grafanaLogin;
