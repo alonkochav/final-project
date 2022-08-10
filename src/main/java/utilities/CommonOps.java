@@ -22,10 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.sikuli.script.Screen;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import workflows.ElectronFlows;
@@ -43,16 +40,20 @@ import java.util.concurrent.TimeUnit;
 public class CommonOps extends Base {
 
     public boolean isWeb() {
-        return getData("PlatformName").equalsIgnoreCase("web");
+        return platform.equalsIgnoreCase("web");
     }
     public boolean isMobile() {
-        return getData("PlatformName").equalsIgnoreCase("mobile");
+        return platform.equalsIgnoreCase("mobile");
     }
     public boolean isAPI() {
-        return getData("PlatformName").equalsIgnoreCase("api");
+        return platform.equalsIgnoreCase("api");
     }
-    public boolean isElectron() {return getData("PlatformName").equalsIgnoreCase("electron");}
-    public boolean isDesktop() {return getData("PlatformName").equalsIgnoreCase("desktop");}
+    public boolean isElectron(){
+        return platform.equalsIgnoreCase("electron");
+    }
+    public boolean isDesktop() {
+        return platform.equalsIgnoreCase("desktop");
+    }
 
     public static String getData(String nodeName) {
         File fXmlFile;
@@ -66,6 +67,7 @@ public class CommonOps extends Base {
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(fXmlFile);
             doc.getDocumentElement().normalize();
+
         } catch (Exception e) {
             System.out.println("Exception in reading XML file: " + e);
         } finally {
@@ -162,8 +164,10 @@ public class CommonOps extends Base {
 
     //  ---    BeforeClass
     @BeforeClass
-    public void startSession() {
+    @Parameters({"PlatformName"})
 
+    public void startSession(String PlatformName) {
+        platform = PlatformName;
         if (isWeb())
             initBrowser(getData("BrowserName"));
         else if (isMobile())
@@ -178,9 +182,18 @@ public class CommonOps extends Base {
             throw new RuntimeException("Invalid platform name");
         softAssert = new SoftAssert();
         screen = new Screen();
+
+
         if (!isDesktop() && !isAPI())
             action = new Actions(driver);
+        String dbURL = getData("DBURL");
+        String dbUser = getData("DBUsername");
+        String dbPass = getData("DBPassword");
+        ManageDB.openConnection(dbURL,dbUser,dbPass);
+
     }
+
+
 
     //  ---    BeforeMethod
 
@@ -228,6 +241,8 @@ public class CommonOps extends Base {
            else
                driver.quit();
        }
-    }
+       ManageDB.closeConnection();
+
+   }
 
 }

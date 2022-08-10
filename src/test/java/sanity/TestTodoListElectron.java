@@ -10,8 +10,6 @@ import workflows.ElectronFlows;
 
 import java.util.concurrent.TimeUnit;
 
-import static workflows.ElectronFlows.getTaskCount;
-
 @Listeners(utilities.Listeners.class)
 public class TestTodoListElectron extends CommonOps {
 

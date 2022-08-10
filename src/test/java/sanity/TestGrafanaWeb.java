@@ -18,7 +18,7 @@ import java.util.List;
 @Listeners(utilities.Listeners.class)
 public class TestGrafanaWeb extends CommonOps {
 
-    @Test(description = "Test 01 - Verify Header")
+    @Test(description = "Test 01 - Log in and Verify Header")
     @Description ("This Test logs in and verifies the main header")
     public void test01_verifyHeader(){
         WebFlows.login(getData("username"),getData("password"));

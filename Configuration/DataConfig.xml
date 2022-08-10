@@ -2,11 +2,11 @@
 <Environment>
 
     <!--     Timeout -->
-    <Timeout>13</Timeout>
+    <Timeout>5</Timeout>
     <KeyStrokeDelay>250</KeyStrokeDelay>
 
     <!--    General-->
-    <PlatformName>api</PlatformName>
+<!--    <PlatformName>web</PlatformName>-->
 
     <!--     Auth -->
     <username>admin</username>
@@ -33,13 +33,12 @@
     <ElectronDriverPath>.\Drivers\electrondriver.exe</ElectronDriverPath>
     <ElectronAppPath>C:/Users/DELL/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
-    <!--     Electron -->
-    <ElectronDriverPath>.\Drivers\electrondriver.exe</ElectronDriverPath>
-    <ElectronAppPath>C:/Users/DELL/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
-
     <!-- Desktop -->
     <CalculatorApp>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App</CalculatorApp>
 
-
+    <!-- Database -->
+    <DBURL>jdbc:mysql://localhost:3306/qualite</DBURL>
+    <DBUsername>qualite</DBUsername>
+    <DBPassword>12345678</DBPassword>
 
 </Environment>

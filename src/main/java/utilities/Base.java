@@ -1,7 +1,6 @@
 package utilities;
 
  import io.appium.java_client.android.AndroidDriver;
- import io.appium.java_client.windows.WindowsDriver;
  import org.json.simple.JSONObject;
  import org.openqa.selenium.WebDriver;
  import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,8 +11,11 @@ package utilities;
  import io.restassured.specification.RequestSpecification;
  import io.restassured.response.Response;
  import io.restassured.path.json.JsonPath;
+ import pageObjects.calculator.MainPage;
+ import pageObjects.grafana.*;
 
  import java.sql.Connection;
+ import java.sql.ResultSet;
  import java.sql.Statement;
 
 public class Base {
@@ -23,6 +25,8 @@ public class Base {
     protected static Actions action;
     protected static SoftAssert softAssert;
     protected static Screen screen;
+    protected static String platform;
+
 
     // Web
     protected static WebDriver driver;
@@ -42,18 +46,18 @@ public class Base {
     // Database
     protected static Connection con;
     protected static Statement stmt;
-    protected static Result result;
+    protected static ResultSet rs;
 
 
 
     // Page Objects - Web
-    protected static pageObjects.grafana.LoginPage grafanaLogin;
+    protected static LoginPage grafanaLogin;
     protected static pageObjects.grafana.MainPage grafanaMain;
-    protected static pageObjects.grafana.LeftMenuPage grafanaLeftMenu;
-    protected static pageObjects.grafana.ServerAdminMenuPage grafanaServerAdmin;
-    protected static pageObjects.grafana.ServerAdminMainPage grafanaServerAdminMain;
-    protected static pageObjects.grafana.AddNewUserPage grafanaAddNewUser;
-    protected static pageObjects.grafana.EditUserPage grafanaEditUser;
+    protected static LeftMenuPage grafanaLeftMenu;
+    protected static ServerAdminMenuPage grafanaServerAdmin;
+    protected static ServerAdminMainPage grafanaServerAdminMain;
+    protected static AddNewUserPage grafanaAddNewUser;
+    protected static EditUserPage grafanaEditUser;
 
     // Page Objects - Mobile
     protected static pageObjects.mortgage.MainPage mortgageMain;
@@ -62,7 +66,7 @@ public class Base {
     protected static pageObjects.todo.MainPage todoMain;
 
     // Page Objects - Desktop
-    protected static pageObjects.calculator.MainPage calcMain;
+    protected static MainPage calcMain;
 
 
 
