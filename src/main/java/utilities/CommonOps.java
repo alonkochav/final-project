@@ -39,12 +39,8 @@ import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends Base {
 
-    public boolean isWeb() {
-        return platform.equalsIgnoreCase("web");
-    }
-    public boolean isMobile() {
-        return platform.equalsIgnoreCase("mobile");
-    }
+    public boolean isWeb() {  return platform.equalsIgnoreCase("web"); }
+    public boolean isMobile() { System.out.println("Platform name is "+ platform);return platform.equalsIgnoreCase("mobile");    }
     public boolean isAPI() {
         return platform.equalsIgnoreCase("api");
     }
@@ -113,9 +109,7 @@ public class CommonOps extends Base {
     }
 
     // Mobile driver methods
-
     public static void initMobile(){
-
         dc.setCapability(MobileCapabilityType.UDID, getData("UDID"));
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getData("AppPackage"));
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getData("AppActivity"));

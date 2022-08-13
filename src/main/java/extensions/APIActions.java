@@ -22,7 +22,7 @@ public class APIActions extends CommonOps {
     }
 
     // CREATE   ( _C_ RUD  )
-    @Step("Post Data to Server")
+    @Step(myloggermylogger("Post Data to Server"))
     public static void post(JSONObject params, String resource){
         httpRequest.header("Content-Type","application/json");
         httpRequest.body(params.toJSONString());

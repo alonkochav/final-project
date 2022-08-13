@@ -27,8 +27,7 @@ public class Base {
     protected static Screen screen;
     protected static String platform;
 
-
-    // Web
+     // Web
     protected static WebDriver driver;
 
 

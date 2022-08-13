@@ -2,8 +2,8 @@
 <Environment>
 
     <!--     Timeout -->
-    <Timeout>5</Timeout>
-    <KeyStrokeDelay>250</KeyStrokeDelay>
+    <Timeout>10</Timeout>
+    <KeyStrokeDelay>200</KeyStrokeDelay>
 
     <!--    General-->
 <!--    <PlatformName>web</PlatformName>-->
