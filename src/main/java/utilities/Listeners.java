@@ -38,7 +38,7 @@ public class Listeners extends CommonOps implements ITestListener {
 
     public void onTestSuccess (ITestResult test) {
         System.out.println(" ----------  SUCCESS! ----------- Test: " + test.getName() + " Passed ------------------");
-        if (!isAPI() || !isMobile()) {
+        if (!isAPI() && !isMobile()) {
 //            if (isWeb() || isElectron()) {
                 //   Stop Recording
                 try {

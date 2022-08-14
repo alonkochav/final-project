@@ -2,8 +2,8 @@
 <Environment>
 
     <!--     Timeout -->
-    <Timeout>10</Timeout>
-    <KeyStrokeDelay>200</KeyStrokeDelay>
+    <Timeout>5</Timeout>
+    <KeyStrokeDelay>175</KeyStrokeDelay>
 
     <!--    General-->
 <!--    <PlatformName>web</PlatformName>-->
@@ -30,7 +30,7 @@
     <urlAPI>http://localhost:3000/</urlAPI>
 
     <!--     Electron -->
-    <ElectronDriverPath>.\Drivers\electrondriver.exe</ElectronDriverPath>
+    <ElectronDriverPath>.\\Drivers\electrondriver.exe</ElectronDriverPath>
     <ElectronAppPath>C:/Users/DELL/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
     <!-- Desktop -->

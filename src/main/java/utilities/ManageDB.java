@@ -13,7 +13,8 @@ public class ManageDB extends CommonOps
         } catch (ClassNotFoundException e) {
             System.out.println("Error occurred while connecting to the DB. See details: "+ e);
         } catch (SQLException e) {
-            System.out.println("Error occurred while fetching data from DB. See details: "+ e);        }
+            System.out.println("Error occurred while fetching data from DB. See details: "+ e);
+        }
     }
 
     public static void closeConnection(){

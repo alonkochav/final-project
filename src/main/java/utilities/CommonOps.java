@@ -183,10 +183,7 @@ public class CommonOps extends Base {
         String dbUser = getData("DBUsername");
         String dbPass = getData("DBPassword");
         ManageDB.openConnection(dbURL,dbUser,dbPass);
-
     }
-
-
 
     //  ---    BeforeMethod
 
@@ -206,8 +203,6 @@ public class CommonOps extends Base {
                     wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"), 0));
                 }
             }
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
