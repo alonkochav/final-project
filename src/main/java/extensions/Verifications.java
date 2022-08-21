@@ -1,13 +1,14 @@
 package extensions;
 
 import io.appium.java_client.android.AndroidElement;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.sikuli.script.FindFailed;
+import org.sikuli.script.*;
 import utilities.CommonOps;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import static org.testng.Assert.*;
 
@@ -39,7 +40,7 @@ public class Verifications extends CommonOps {
             wait.until(ExpectedConditions.visibilityOfAllElements(elems));
             softAssert.assertTrue(elem.isDisplayed(),"Sorry, the element "+ elem.getText() + "is not displayed." );
         }
-        System.out.println("Some elements were not displayed");
+        Logger.getLogger("Some elements were not displayed");
         softAssert.assertAll();
     }
 
@@ -49,7 +50,7 @@ public class Verifications extends CommonOps {
             wait.until(ExpectedConditions.visibilityOf(grafanaLeftMenu.btn_home));
             screen.find(getData("ImageRepo")+expectedImageName+".png");
         } catch (FindFailed findFailed){
-            System.out.println("Error comparing Image File " + findFailed);
+            Logger.getLogger("Error comparing Image File " + findFailed);
             fail("Error comparing Image File " + findFailed);
         }
     }

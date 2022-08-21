@@ -2,6 +2,7 @@ package utilities;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class ManageDB extends CommonOps
 {
@@ -11,9 +12,9 @@ public class ManageDB extends CommonOps
             con = DriverManager.getConnection(dbURL,user,pass);
             stmt = con.createStatement();
         } catch (ClassNotFoundException e) {
-            System.out.println("Error occurred while connecting to the DB. See details: "+ e);
+            Logger.getLogger("Error occurred while connecting to the DB. See details: "+ e);
         } catch (SQLException e) {
-            System.out.println("Error occurred while fetching data from DB. See details: "+ e);
+            Logger.getLogger("Error occurred while fetching data from DB. See details: "+ e);
         }
     }
 
@@ -21,7 +22,7 @@ public class ManageDB extends CommonOps
         try {
             con.close();
         } catch (Exception e) {
-            System.out.println("Error Occurred While Closing DB. See details: "+ e);
+            Logger.getLogger("Error Occurred While Closing DB. See details: "+ e);
         }
     }
 

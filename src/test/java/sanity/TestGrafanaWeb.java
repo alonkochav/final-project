@@ -2,10 +2,18 @@ package sanity;
 
 import extensions.Verifications;
 import io.qameta.allure.Description;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;
 import workflows.WebFlows;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Listeners(utilities.Listeners.class)
 public class TestGrafanaWeb extends CommonOps {
@@ -43,30 +51,30 @@ public class TestGrafanaWeb extends CommonOps {
 //        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
         Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
     }
-//
-//    @Test (description = "Test 05 - Verify progress steps")
-//    @Description ("This Test verifies the progress steps are visible on main page using soft Assertion")
-//    public void test05_verifyProgressSteps(){
-//        List<WebElement> listOfAllWebElements = new ArrayList<>();
-//        listOfAllWebElements.add(grafanaMain.head_progressSteps);
-//        listOfAllWebElements.addAll(grafanaMain.list_progressSteps);
-//        Verifications.visibilityOfElements(listOfAllWebElements);
-//    }
-//
-//    @Test (description = "Test 06 - Verify Avatar Icon")
-//    @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
-//    public void test06_verifyAvatarIcon() {
-//        ((JavascriptExecutor) driver).executeScript("window.focus();");
-//        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
-////        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
-//        Verifications.visualElement("Avatar");
-//    }
-//
-//    @Test (description = "Test 07 - Search Users", dataProvider = "data-provider-users", dataProviderClass = utilities.ManageDDT.class)
-//    @Description ("This Test Searches Users in the List Using DDT" )
-//    public void test07_searchUsers(String user, String shouldExist) {
-//        WebFlows.showUsers();
-//        WebFlows.searchAndVerifyUser(user,shouldExist);
-//    }
-//
+
+    @Test (description = "Test 05 - Verify progress steps")
+    @Description ("This Test verifies the progress steps are visible on main page using soft Assertion")
+    public void test05_verifyProgressSteps(){
+        List<WebElement> listOfAllWebElements = new ArrayList<>();
+        listOfAllWebElements.add(grafanaMain.head_progressSteps);
+        listOfAllWebElements.addAll(grafanaMain.list_progressSteps);
+        Verifications.visibilityOfElements(listOfAllWebElements);
+    }
+
+    @Test (description = "Test 06 - Verify Avatar Icon")
+    @Description ("This Test verifies the Verify Avatar Icon using Visual sikulix-api")
+    public void test06_verifyAvatarIcon() {
+        ((JavascriptExecutor) driver).executeScript("window.focus();");
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("html"),0));
+//        Verifications.visualElement("FakeGrafanaAvatar");  // FAIL TEST
+        Verifications.visualElement("Avatar");
+    }
+
+    @Test (description = "Test 07 - Search Users", dataProvider = "data-provider-users", dataProviderClass = utilities.ManageDDT.class)
+    @Description ("This Test Searches Users in the List Using DDT" )
+    public void test07_searchUsers(String user, String shouldExist) {
+        WebFlows.showUsers();
+        WebFlows.searchAndVerifyUser(user,shouldExist);
+    }
+
 }

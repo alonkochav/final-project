@@ -4,6 +4,8 @@ import extensions.UIActions;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
 
+import java.util.logging.Logger;
+
 public class DesktopFlows extends CommonOps {
 
     public static void getCalcButtonObjects(int a) {
@@ -41,7 +43,7 @@ public class DesktopFlows extends CommonOps {
 
             // Default case
             default:
-                System.out.println("Not found");
+                Logger.getLogger("Not found");
         }
     }
 
@@ -52,7 +54,7 @@ public class DesktopFlows extends CommonOps {
         UIActions.click(calcMain.btn_plus);
         getCalcButtonObjects(b);
         UIActions.click(calcMain.btn_equals);
-        System.out.println(calcMain.field_result.getText());
+        Logger.getLogger(calcMain.field_result.getText());
 
     }
 

@@ -6,6 +6,7 @@ import utilities.CommonOps;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DBActions extends CommonOps {
 
@@ -18,8 +19,14 @@ public class DBActions extends CommonOps {
             credentials.add(rs.getString(1));
             credentials.add(rs.getString(2));
         } catch (SQLException e) {
-            System.out.println("Error occurred While Printing Table Data See details: "+ e);  }
+            Logger.getLogger("Error occurred While Printing Table Data See details: "+ e);
+        }
 
-    return credentials;
+        for (String cred:credentials)
+        {
+            Logger.getLogger(cred);
+
+        }
+        return credentials;
     }
- }
+}

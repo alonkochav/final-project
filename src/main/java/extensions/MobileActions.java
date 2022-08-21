@@ -1,5 +1,6 @@
 package extensions;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
@@ -10,10 +11,12 @@ import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
+//import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.CommonOps;
 
 import java.time.Duration;
+import java.util.logging.Logger;
 
 public class MobileActions extends CommonOps {
 
@@ -23,17 +26,17 @@ public class MobileActions extends CommonOps {
         elem.sendKeys(text);
     }
 
-/*    ====================================         TAP  =============================================== */
+    /*    ====================================         TAP  =============================================== */
     @Step ("Tap on Element")
     public static void tap (AndroidElement elem) {
         wait.until(ExpectedConditions.elementToBeClickable(elem));
         AndroidTouchAction action = new AndroidTouchAction (mobileDriver);
         action.tap((new TapOptions())
-                .withElement(ElementOption.element(elem)))
+                        .withElement(ElementOption.element(elem)))
                 .perform();
     }
 
-/*    ===================================   Long Press =============================================== */
+//    /*    ===================================   Long Press =============================================== */
 //    @Step ("Long press / longtap on Element")
 //    public static void longPress(AndroidElement elem){
 //        TouchAction action = new TouchAction (mobileDriver);
@@ -41,11 +44,12 @@ public class MobileActions extends CommonOps {
 //        action.perform();
 //    }
 
-/*    =================================     SWIPE  =============================================== */
+
+    /*    =================================     SWIPE  =============================================== */
 
     @Step ("Swipe Element")
     public static void swipe(Direction dir) {
-        System.out.println("swipeScreen(): dir: '" + dir + "'"); // always log your actions
+        Logger.getLogger("swipeScreen(): dir: '" + dir + "'"); // always log your actions
 
         // Animation default time:
         //  - Android: 300 ms
@@ -113,7 +117,7 @@ public class MobileActions extends CommonOps {
         int y = elem.getLocation().getY() + elem.getSize().getHeight() / 2;
         AndroidTouchAction  finger1 = new AndroidTouchAction (mobileDriver);
         finger1.press(new ElementOption()
-                .withElement(elem).withCoordinates(x, y - 10))
+                        .withElement(elem).withCoordinates(x, y - 10))
                 .moveTo(new ElementOption().withElement(elem).withCoordinates(x, y -  100));
 
         AndroidTouchAction  finger2 = new AndroidTouchAction (mobileDriver);

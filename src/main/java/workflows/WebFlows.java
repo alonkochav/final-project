@@ -6,9 +6,13 @@ import extensions.Verifications;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
 
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class WebFlows extends CommonOps {
+
+
 
     @Step("Business Flow: Login to Grafana")
     public static void login(String user, String pass){
@@ -20,9 +24,9 @@ public class WebFlows extends CommonOps {
 
     @Step("Business Flow: Login to Grafana using DB Credentials")
     public static void loginDB(){
-        String query = "SELECT username, password FROM employees WHERE id='3'";
+        String query = "SELECT username,password FROM employees WHERE id='3'";
         List<String> cred = DBActions.getCredentials(query);
-        System.out.println(cred.get(0));
+        Logger.getLogger(cred.get(0));
         UIActions.updateText(grafanaLogin.txt_username, cred.get(0));
         UIActions.updateText(grafanaLogin.txt_password, cred.get(1));
         UIActions.click(grafanaLogin.btn_login);
@@ -57,10 +61,10 @@ public class WebFlows extends CommonOps {
         UIActions.updateTextHuman(grafanaServerAdminMain.txt_search,user);
         if (shouldExist.equalsIgnoreCase("existing")){
             Verifications.existenceOfElement(grafanaServerAdminMain.rows);
-            System.out.println("The user " + user + " DOES exist!");
+            Logger.getLogger("The user " + user + " DOES exist!");
         } else if (shouldExist.equalsIgnoreCase("nonExisting")){
             Verifications.nonExistenceOfElement(grafanaServerAdminMain.rows);
-            System.out.println("The user " + user + " doesn't exist");
+            Logger.getLogger("The user " + user + " doesn't exist");
         } else
             throw new RuntimeException("Invalid Expected Output Option in Data Driven Testing , Should be 'existing' or 'nonExisting'");
     }

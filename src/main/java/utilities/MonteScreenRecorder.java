@@ -9,6 +9,7 @@ import org.monte.screenrecorder.ScreenRecorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import static org.monte.media.FormatKeys.*;
 import static org.monte.media.VideoFormatKeys.*;
@@ -31,7 +32,7 @@ public class MonteScreenRecorder extends ScreenRecorder {
         else if (!movieFolder.isDirectory()) {
             throw new IOException("\"" + movieFolder + "\" is not a directory.");
         } else
-        System.out.println("Recorded Screen Cast File is Now Created");
+        Logger.getLogger("Recorded Screen Cast File is Now Created");
         return new File(movieFolder,
                 name + "." + Registry.getInstance().getExtension(fileFormat));
     }
@@ -57,6 +58,6 @@ public class MonteScreenRecorder extends ScreenRecorder {
 
     public static void stopRecord() throws Exception {
         screenRecorder.stop();
-        System.out.println("Recorded Screen Cast File Stop Recording");
+        Logger.getLogger("Recorded Screen Cast File Stop Recording");
     }
 }

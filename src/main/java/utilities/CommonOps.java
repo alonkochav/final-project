@@ -6,6 +6,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.screenrecording.CanRecordScreen;
 import io.appium.java_client.windows.WindowsDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import io.restassured.RestAssured;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,22 +18,25 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.sikuli.script.Screen;
+
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import workflows.ElectronFlows;
 
+import java.lang.reflect.Method;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class CommonOps extends Base {
-
 
     public boolean isWeb() {  return platform.equalsIgnoreCase("web"); }
     public boolean isMobile() { return platform.equalsIgnoreCase("mobile");    }
@@ -60,7 +64,7 @@ public class CommonOps extends Base {
             doc.getDocumentElement().normalize();
 
         } catch (Exception e) {
-            System.out.println("Exception in reading XML file: " + e);
+            Logger.getLogger("Exception in reading XML file: " + e);
         } finally {
             return doc.getElementsByTagName(nodeName).item(0).getTextContent();
         }
@@ -112,7 +116,7 @@ public class CommonOps extends Base {
             mobileDriver = new AndroidDriver(new URL(getData("AppiumServer")+ "wd/hub"), dc);
 
         } catch (Exception e) {
-            System.out.println("Cannot Connect to Appium Server. See details: " + e);
+            Logger.getLogger("Cannot Connect to Appium Server. See details: " + e);
         }
         mobileDriver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
@@ -144,14 +148,14 @@ public class CommonOps extends Base {
         try {
             driver = new WindowsDriver(new URL( getData("AppiumServer")), dc);
         } catch (MalformedURLException e) {
-//            System.out.println("Could not connect to Appium Server, See Details : " + e);
+//            Logger.getLogger("Could not connect to Appium Server, See Details : " + e);
         }
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
         ManagePages.initCalculator();
     }
 
-    //  ---   ---    BeforeClass  ---   ---   ---   ---
+    //  ---    BeforeClass
     @BeforeClass
     @Parameters({"PlatformName"})
     public void startSession(String PlatformName) {
@@ -204,7 +208,7 @@ public class CommonOps extends Base {
         }
     }
 
- //   --      @AfterMethod
+    //   --      @AfterMethod
     @AfterMethod
     public void afterMethod() {
         if (isWeb()) {
@@ -215,17 +219,17 @@ public class CommonOps extends Base {
         }
     }
 
-//   ---            @AfterClass
-   @AfterClass
+    //   ---            @AfterClass
+    @AfterClass
     public void closeSession(){
-       if (!isAPI()) {
-           if (isMobile())
-               mobileDriver.quit();
-           else
-               driver.quit();
-       }
-       ManageDB.closeConnection();
+        if (!isAPI()) {
+            if (isMobile())
+                mobileDriver.quit();
+            else
+                driver.quit();
+        }
+        ManageDB.closeConnection();
 
-   }
+    }
 
 }
