@@ -1,10 +1,10 @@
 package extensions;
 
 import io.appium.java_client.android.AndroidElement;
-import io.qameta.allure.*;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.sikuli.script.*;
+import org.sikuli.script.FindFailed;
 import utilities.CommonOps;
 
 import java.util.List;

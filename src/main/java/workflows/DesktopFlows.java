@@ -2,10 +2,7 @@ package workflows;
 
 import extensions.UIActions;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
-
-import java.util.List;
 
 public class DesktopFlows extends CommonOps {
 

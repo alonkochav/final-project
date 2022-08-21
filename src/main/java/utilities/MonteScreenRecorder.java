@@ -11,9 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.monte.media.FormatKeys.*;
-import static org.monte.media.FormatKeys.FrameRateKey;
 import static org.monte.media.VideoFormatKeys.*;
-import static org.monte.media.VideoFormatKeys.QualityKey;
 
 public class MonteScreenRecorder extends ScreenRecorder {
     public static ScreenRecorder screenRecorder;

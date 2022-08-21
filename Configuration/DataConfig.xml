@@ -2,11 +2,11 @@
 <Environment>
 
     <!--     Timeout -->
-    <Timeout>5</Timeout>
+    <Timeout>10</Timeout>
     <KeyStrokeDelay>175</KeyStrokeDelay>
 
     <!--    General-->
-<!--    <PlatformName>web</PlatformName>-->
+    <PlatformName>web</PlatformName>
 
     <!--     Auth -->
     <username>admin</username>

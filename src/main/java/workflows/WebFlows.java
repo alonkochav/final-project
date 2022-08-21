@@ -6,23 +6,9 @@ import extensions.Verifications;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
 
-import java.util.Date;
 import java.util.List;
 
 public class WebFlows extends CommonOps {
-
-//    @Step("{0}")
-//    public void log(final String message){
-//        //intentionally empty
-//    }
-//
-//    public static void mylogger(String msg){
-//        Date d = new Date();
-//        String[] dateTokens = d.toString().split(" ");
-//        System.out.println(dateTokens[3] + " " + msg);
-//        log(dateTokens[3] + msg);
-//    }
-
 
     @Step("Business Flow: Login to Grafana")
     public static void login(String user, String pass){
@@ -34,7 +20,7 @@ public class WebFlows extends CommonOps {
 
     @Step("Business Flow: Login to Grafana using DB Credentials")
     public static void loginDB(){
-        String query = "SELECT first_name, password FROM employees WHERE id='3'";
+        String query = "SELECT username, password FROM employees WHERE id='3'";
         List<String> cred = DBActions.getCredentials(query);
         System.out.println(cred.get(0));
         UIActions.updateText(grafanaLogin.txt_username, cred.get(0));

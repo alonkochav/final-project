@@ -1,9 +1,8 @@
 package workflows;
 
-import extensions.APIActions;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
-
+import extensions.APIActions;
 
 public class APIFlows extends CommonOps {
 

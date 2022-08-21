@@ -3,11 +3,9 @@ package utilities;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.screenrecording.BaseStartScreenRecordingOptions;
 import io.appium.java_client.screenrecording.CanRecordScreen;
 import io.appium.java_client.windows.WindowsDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import io.restassured.RestAssured;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,25 +17,22 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import org.sikuli.script.Screen;
-
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 import workflows.ElectronFlows;
 
-import java.lang.reflect.Method;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends Base {
+
 
     public boolean isWeb() {  return platform.equalsIgnoreCase("web"); }
     public boolean isMobile() { return platform.equalsIgnoreCase("mobile");    }
@@ -156,7 +151,7 @@ public class CommonOps extends Base {
         ManagePages.initCalculator();
     }
 
-    //  ---    BeforeClass
+    //  ---   ---    BeforeClass  ---   ---   ---   ---
     @BeforeClass
     @Parameters({"PlatformName"})
     public void startSession(String PlatformName) {

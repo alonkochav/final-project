@@ -7,7 +7,6 @@ import utilities.CommonOps;
 
 public class APIActions extends CommonOps {
 
-
     @Step("Extract Value From JSON Format")
     public static String extractFromJson(Response response, String path){
         jp = response.jsonPath();
@@ -55,5 +54,4 @@ public class APIActions extends CommonOps {
         response = httpRequest.delete(resource);
         response.prettyPrint();
     }
-
 }

@@ -2,7 +2,6 @@ package sanity;
 
 import extensions.Verifications;
 import io.qameta.allure.Description;
-
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;

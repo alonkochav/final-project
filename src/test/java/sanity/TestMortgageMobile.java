@@ -2,9 +2,7 @@ package sanity;
 
 import extensions.Verifications;
 import io.appium.java_client.android.AndroidDriver;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;

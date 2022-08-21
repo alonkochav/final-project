@@ -13,8 +13,8 @@ public class TestGrafanaWebDB extends CommonOps {
     @Description("This Test logs in with DB credentials and verifies the main header")
     public void test01_loginDBAndVerifyHeader(){
         WebFlows.loginDB();
-        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Alon ");      // FAIL TEST
-//        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
+//        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Alon ");      // FAIL TEST
+        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
     }
 
     @Test (description = "Test 02 - Verify Default Users")

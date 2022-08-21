@@ -1,22 +1,23 @@
 package utilities;
 
- import io.appium.java_client.android.AndroidDriver;
- import org.json.simple.JSONObject;
- import org.openqa.selenium.WebDriver;
- import org.openqa.selenium.remote.DesiredCapabilities;
- import org.openqa.selenium.support.ui.WebDriverWait;
- import org.openqa.selenium.interactions.Actions;
- import org.sikuli.script.Screen;
- import org.testng.asserts.SoftAssert;
- import io.restassured.specification.RequestSpecification;
- import io.restassured.response.Response;
- import io.restassured.path.json.JsonPath;
- import pageObjects.calculator.MainPage;
- import pageObjects.grafana.*;
+import io.appium.java_client.android.AndroidDriver;
+import io.restassured.path.json.JsonPath;
+import io.restassured.specification.RequestSpecification;
+import org.openqa.selenium.WebDriver;
 
- import java.sql.Connection;
- import java.sql.ResultSet;
- import java.sql.Statement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.Screen;
+import org.testng.asserts.SoftAssert;
+import pageObjects.calculator.MainPage;
+import pageObjects.grafana.*;
+import io.restassured.response.Response;
+import org.json.simple.JSONObject;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Base {
 
@@ -46,8 +47,6 @@ public class Base {
     protected static Connection con;
     protected static Statement stmt;
     protected static ResultSet rs;
-
-
 
     // Page Objects - Web
     protected static LoginPage grafanaLogin;

@@ -2,18 +2,10 @@ package sanity;
 
 import extensions.Verifications;
 import io.qameta.allure.Description;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;
 import workflows.WebFlows;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Listeners(utilities.Listeners.class)
 public class TestGrafanaWeb extends CommonOps {
