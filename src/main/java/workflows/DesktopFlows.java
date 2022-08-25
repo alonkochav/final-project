@@ -4,7 +4,7 @@ import extensions.UIActions;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class DesktopFlows extends CommonOps {
 

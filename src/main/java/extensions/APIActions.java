@@ -6,7 +6,7 @@ import org.json.simple.JSONObject;
 import org.testng.Assert;
 import utilities.CommonOps;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import static org.testng.Assert.fail;
 

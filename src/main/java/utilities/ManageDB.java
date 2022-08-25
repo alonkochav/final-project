@@ -2,7 +2,7 @@ package utilities;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class ManageDB extends CommonOps
 {

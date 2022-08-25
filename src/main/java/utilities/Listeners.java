@@ -9,7 +9,7 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.util.Date;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 
 public class Listeners extends CommonOps implements ITestListener {

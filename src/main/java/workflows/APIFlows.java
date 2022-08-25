@@ -2,10 +2,8 @@ package workflows;
 
 import extensions.APIActions;
 import io.qameta.allure.Step;
+import org.apache.log4j.Logger;
 import utilities.CommonOps;
-
-import java.util.Arrays;
-import java.util.logging.Logger;
 
 
 public class APIFlows extends CommonOps {
@@ -50,8 +48,8 @@ public class APIFlows extends CommonOps {
             intArray[i] = Integer.parseInt(strArray[i]);
             max = findMax(intArray[i],max);
         }
-//        Logger.getLogger("arrTeams length = " + arrTeams.length);
-//         Logger.getLogger("the last id is: " + max);
+        Logger.getLogger("arrTeams length = " + intArray.length);
+        Logger.getLogger("the last id is: " + max);
         String oldName = APIFlows.getTeamByID(max, "name");
         Logger.getLogger("last id's name was : "+oldName + ", id:" + max);
         return max;
@@ -76,7 +74,7 @@ public class APIFlows extends CommonOps {
             response = httpRequest.get(randomUserUrl);
         } catch (Exception e){
             response.getBody();
-            Logger.getLogger("Message");
+            Logger.getLogger("Random user fetched and requested");
         }
         String fname = APIActions.extractFromJson(response,"first_name");
         String lname = APIActions.extractFromJson(response,"last_name");

@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.CommonOps;
 
 import java.time.Duration;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class MobileActions extends CommonOps {
 

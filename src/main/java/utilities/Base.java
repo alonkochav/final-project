@@ -17,7 +17,7 @@ import pageObjects.grafana.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class Base {
 
