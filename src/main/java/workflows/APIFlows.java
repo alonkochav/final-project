@@ -2,8 +2,8 @@ package workflows;
 
 import extensions.APIActions;
 import io.qameta.allure.Step;
-import org.apache.log4j.Logger;
 import utilities.CommonOps;
+import utilities.Log;
 
 
 public class APIFlows extends CommonOps {
@@ -48,10 +48,10 @@ public class APIFlows extends CommonOps {
             intArray[i] = Integer.parseInt(strArray[i]);
             max = findMax(intArray[i],max);
         }
-        Logger.getLogger("arrTeams length = " + intArray.length);
-        Logger.getLogger("the last id is: " + max);
+        Log.info("arrTeams length = " + intArray.length);
+        Log.info("the last id is: " + max);
         String oldName = APIFlows.getTeamByID(max, "name");
-        Logger.getLogger("last id's name was : "+oldName + ", id:" + max);
+        Log.info("last id's name was : "+oldName + ", id:" + max);
         return max;
     }
 
@@ -74,7 +74,7 @@ public class APIFlows extends CommonOps {
             response = httpRequest.get(randomUserUrl);
         } catch (Exception e){
             response.getBody();
-            Logger.getLogger("Random user fetched and requested");
+            Log.info("Random user fetched and requested");
         }
         String fname = APIActions.extractFromJson(response,"first_name");
         String lname = APIActions.extractFromJson(response,"last_name");
@@ -83,7 +83,7 @@ public class APIFlows extends CommonOps {
         String[] userParams =  new String[3];
         String   name = userParams[0] = fname + " " + lname;
         userParams[1] = email;
-        Logger.getLogger("New Random user created  '"+name+"' with email '"+email+"' Created!");
+        Log.info("New Random user created  '"+name+"' with email '"+email+"' Created!");
 
         return userParams;
     }
@@ -92,17 +92,17 @@ public class APIFlows extends CommonOps {
     public static void postTeam(String name, String email){
         params.put("name",name);
         params.put("email",email);
-        Logger.getLogger("New Team '"+name+"' with email '"+email+"' Created!");
+        Log.info("New Team '"+name+"' with email '"+email+"' Created!");
 
         APIActions.post(params,"/api/teams");
     }
 
-    @Step("Business Flow : Update Existing Team in Grafana")
-    public static void updateTeam(String newName, String newEmail, int id){
-        params.put("name",newName);
-        params.put("email",newEmail);
-        APIActions.put(params,"/api/teams/" + id);
-    }
+//    @Step("Business Flow : Update Existing Team in Grafana")
+//    public static void updateTeam(String newName, String newEmail, int id){
+//        params.put("name",newName);
+//        params.put("email",newEmail);
+//        APIActions.put(params,"/api/teams/" + id);
+//    }
 
     @Step("Business Flow : Update Existing Team Name in Grafana")
     public static void updateTeamName(String newName, int id){

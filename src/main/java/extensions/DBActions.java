@@ -2,11 +2,12 @@ package extensions;
 
 import io.qameta.allure.Step;
 import utilities.CommonOps;
+import utilities.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 public class DBActions extends CommonOps {
 
@@ -24,8 +25,7 @@ public class DBActions extends CommonOps {
 
         for (String cred:credentials)
         {
-            Logger.getLogger(cred);
-
+            Log.info(cred);
         }
         return credentials;
     }

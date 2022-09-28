@@ -2,7 +2,7 @@
 <Environment>
 
     <!--     Timeout -->
-    <Timeout>10</Timeout>
+    <Timeout>3</Timeout>
     <KeyStrokeDelay>175</KeyStrokeDelay>
 
     <!--    General-->

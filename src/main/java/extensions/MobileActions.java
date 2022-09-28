@@ -11,17 +11,17 @@ import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
-//import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.CommonOps;
+import utilities.Log;
 
 import java.time.Duration;
-import org.apache.log4j.Logger;
 
 public class MobileActions extends CommonOps {
 
     @Step("Update Text Element")
     public static void updateText(AndroidElement elem, String text) {
+
         wait.until(ExpectedConditions.visibilityOf(elem));
         elem.sendKeys(text);
     }
@@ -49,7 +49,7 @@ public class MobileActions extends CommonOps {
 
     @Step ("Swipe Element")
     public static void swipe(Direction dir) {
-        Logger.getLogger("swipeScreen(): dir: '" + dir + "'"); // always log your actions
+        Log.info("swipeScreen(): dir: '" + dir + "'"); // always log your actions
 
         // Animation default time:
         //  - Android: 300 ms

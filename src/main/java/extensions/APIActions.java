@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
 import utilities.CommonOps;
+import utilities.Log;
 
 import org.apache.log4j.Logger;
 
@@ -36,7 +37,7 @@ public class APIActions extends CommonOps {
             //        response.prettyPrint();
         } catch (Exception e){
             //            e.printStackTrace();
-            Logger.getLogger("There was an error updating the email. See details + "+e.getMessage());
+            Log.info("There was an error updating the email. See details + "+e.getMessage());
         }
      }
 
@@ -51,9 +52,9 @@ public class APIActions extends CommonOps {
         response.prettyPrint();
 
     } catch (Exception e){
-            Logger.getLogger("There was an error updating the email. See details + "+e.getMessage());
+            Log.info("There was an error updating the email. See details + "+e.getMessage());
     } catch (AssertionError error){
-            Logger.getLogger("The values of the actual vs expected do not match. See details + "+error.getMessage());
+            Log.info("The values of the actual vs expected do not match. See details + "+error.getMessage());
             fail("The program failed to assert that the values tested match.");
         }
     }

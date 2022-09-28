@@ -34,7 +34,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
-import org.apache.log4j.Logger;
+
+
 
 public class CommonOps extends Base {
 
@@ -50,6 +51,7 @@ public class CommonOps extends Base {
         return platform.equalsIgnoreCase("desktop");
     }
 
+
     public static String getData(String nodeName) {
         File fXmlFile;
         DocumentBuilder dBuilder;
@@ -64,10 +66,9 @@ public class CommonOps extends Base {
             doc.getDocumentElement().normalize();
 
         } catch (Exception e) {
-            Logger.getLogger("Exception in reading XML file: " + e);
-        } finally {
-            return doc.getElementsByTagName(nodeName).item(0).getTextContent();
+            Log.info("Exception in reading XML file: " + e);
         }
+        return doc.getElementsByTagName(nodeName).item(0).getTextContent();
     }
 
     public void initBrowser(String browserType) {
@@ -116,7 +117,7 @@ public class CommonOps extends Base {
             mobileDriver = new AndroidDriver(new URL(getData("AppiumServer")+ "wd/hub"), dc);
 
         } catch (Exception e) {
-            Logger.getLogger("Cannot Connect to Appium Server. See details: " + e);
+            Log.info("Cannot Connect to Appium Server. See details: " + e);
         }
         mobileDriver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
@@ -148,7 +149,7 @@ public class CommonOps extends Base {
         try {
             driver = new WindowsDriver(new URL( getData("AppiumServer")), dc);
         } catch (MalformedURLException e) {
-//            Logger.getLogger("Could not connect to Appium Server, See Details : " + e);
+            Log.info("Could not connect to Appium Server, See Details : " + e);
         }
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("Timeout")), TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Long.parseLong(getData("Timeout")));
@@ -195,7 +196,7 @@ public class CommonOps extends Base {
                 }
                 else if (isMobile()){
                     ((JavascriptExecutor) mobileDriver).executeScript("window.focus();");
-                    ((CanRecordScreen) mobileDriver).startRecordingScreen();
+                    mobileDriver.startRecordingScreen();
                 }
                 else {
                     ((JavascriptExecutor) driver).executeScript("window.focus();");

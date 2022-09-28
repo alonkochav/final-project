@@ -17,7 +17,8 @@ import pageObjects.grafana.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import org.apache.log4j.Logger;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Base {
 
@@ -47,8 +48,6 @@ public class Base {
     protected static Connection con;
     protected static Statement stmt;
     protected static ResultSet rs;
-
-
 
     // Page Objects - Web
     protected static LoginPage grafanaLogin;

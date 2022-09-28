@@ -5,14 +5,11 @@ import extensions.UIActions;
 import extensions.Verifications;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
+import utilities.Log;
 
-import java.util.Date;
 import java.util.List;
-import org.apache.log4j.Logger;
 
 public class WebFlows extends CommonOps {
-
-
 
     @Step("Business Flow: Login to Grafana")
     public static void login(String user, String pass){
@@ -26,7 +23,7 @@ public class WebFlows extends CommonOps {
     public static void loginDB(){
         String query = "SELECT username,password FROM employees WHERE id='3'";
         List<String> cred = DBActions.getCredentials(query);
-        Logger.getLogger(cred.get(0));
+        Log.info(cred.get(0));
         UIActions.updateText(grafanaLogin.txt_username, cred.get(0));
         UIActions.updateText(grafanaLogin.txt_password, cred.get(1));
         UIActions.click(grafanaLogin.btn_login);
@@ -61,10 +58,10 @@ public class WebFlows extends CommonOps {
         UIActions.updateTextHuman(grafanaServerAdminMain.txt_search,user);
         if (shouldExist.equalsIgnoreCase("existing")){
             Verifications.existenceOfElement(grafanaServerAdminMain.rows);
-            Logger.getLogger("The user " + user + " DOES exist!");
+            Log.info("The user " + user + " DOES exist!");
         } else if (shouldExist.equalsIgnoreCase("nonExisting")){
             Verifications.nonExistenceOfElement(grafanaServerAdminMain.rows);
-            Logger.getLogger("The user " + user + " doesn't exist");
+            Log.info("The user " + user + " doesn't exist");
         } else
             throw new RuntimeException("Invalid Expected Output Option in Data Driven Testing , Should be 'existing' or 'nonExisting'");
     }

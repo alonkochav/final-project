@@ -12,9 +12,9 @@ public class ManageDB extends CommonOps
             con = DriverManager.getConnection(dbURL,user,pass);
             stmt = con.createStatement();
         } catch (ClassNotFoundException e) {
-            Logger.getLogger("Error occurred while connecting to the DB. See details: "+ e);
+            Log.info("Error occurred while connecting to the DB. See details: "+ e);
         } catch (SQLException e) {
-            Logger.getLogger("Error occurred while fetching data from DB. See details: "+ e);
+            Log.info("Error occurred while fetching data from DB. See details: "+ e);
         }
     }
 
@@ -22,7 +22,7 @@ public class ManageDB extends CommonOps
         try {
             con.close();
         } catch (Exception e) {
-            Logger.getLogger("Error Occurred While Closing DB. See details: "+ e);
+            Log.info("Error Occurred While Closing DB. See details: "+ e);
         }
     }
 

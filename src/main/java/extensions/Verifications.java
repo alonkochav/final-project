@@ -9,6 +9,7 @@ import utilities.CommonOps;
 
 import java.util.List;
 import org.apache.log4j.Logger;
+import utilities.Log;
 
 import static org.testng.Assert.*;
 
@@ -40,7 +41,7 @@ public class Verifications extends CommonOps {
             wait.until(ExpectedConditions.visibilityOfAllElements(elems));
             softAssert.assertTrue(elem.isDisplayed(),"Sorry, the element "+ elem.getText() + "is not displayed." );
         }
-        Logger.getLogger("Some elements were not displayed");
+        Log.info("Some elements were not displayed");
         softAssert.assertAll();
     }
 
@@ -50,7 +51,7 @@ public class Verifications extends CommonOps {
             wait.until(ExpectedConditions.visibilityOf(grafanaLeftMenu.btn_home));
             screen.find(getData("ImageRepo")+expectedImageName+".png");
         } catch (FindFailed findFailed){
-            Logger.getLogger("Error comparing Image File " + findFailed);
+            Log.info("Error comparing Image File " + findFailed);
             fail("Error comparing Image File " + findFailed);
         }
     }

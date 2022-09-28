@@ -9,32 +9,33 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.util.Date;
-import org.apache.log4j.Logger;
 
 
 public class Listeners extends CommonOps implements ITestListener {
 
 
+
     public void onStart (ITestContext execution) {
-        Logger.getLogger(execution.getStartDate() +" :------------------- Starting Execution ------------------");
+        Log.info("\n================================================================================================================");
+        Log.info(" :------------------- Starting Execution ------------------");
     }
 
     public void onFinish (ITestContext execution) {
-        Logger.getLogger(" :---------------------- Ending Execution ------------------");
-        Logger.getLogger("finished : " + execution.getEndDate());
+        Log.info(" :---------------------- Ending Execution ------------------");
+        Log.info("================================================================================================================\n");
     }
 
     public void onTestSkipped (ITestResult test) {
-        Logger.getLogger(" :---------------------- Skipping Test " + test.getName() + " -----------------" );
+        Log.info(" :---------------------- Skipping Test " + test.getName() + " -----------------" );
 
     }
 
     public void onTestStart (ITestResult test) {
-        Logger.getLogger(" ---------------------- Starting Test: " + test.getName() + "  ------------------");
+        Log.info(" ---------------------- Starting Test: " + test.getName() + "  ------------------");
     }
 
     public void onTestSuccess (ITestResult test) {
-        Logger.getLogger(" ----------  SUCCESS! ----------- Test: " + test.getName() + " Passed ------------------");
+        Log.info(" ----------  SUCCESS! ----------- Test: " + test.getName() + " Passed ------------------");
         if (!isAPI() && !isMobile()) {
 //            if (isWeb() || isElectron()) {
             //   Stop Recording
@@ -46,9 +47,9 @@ public class Listeners extends CommonOps implements ITestListener {
             // Delete recorded file
             File file = new File("./test-recordings/" + test.getName() + ".avi");
             if (file.delete())
-                Logger.getLogger("File was deleted successfully");
+                Log.info("File was deleted successfully");
             else
-                Logger.getLogger("Failed to delete the file");
+                Log.info("Failed to delete the file");
 //            }
 //            else {
 ////                ((CanRecordScreen) mobileDriver).stopRecordingScreen();
@@ -57,18 +58,18 @@ public class Listeners extends CommonOps implements ITestListener {
     }
 
     public void onTestFailure (ITestResult test) {
-        Logger.getLogger("---------------------- Test "  + test.getName() + " Failed ------------------");
+        Log.info("---------------------- Test "  + test.getName() + " Failed ------------------");
         if (!isAPI()) {
             if (isWeb() || isElectron()) {
                 try {
                     MonteScreenRecorder.stopRecord();
                 } catch (Exception e) {
-                    Logger.getLogger("Error recording video of screen :" + e);
+                    Log.info("Error recording video of screen :" + e);
                     e.printStackTrace();
                 }
             }
             saveScreenshot();
-            Logger.getLogger(new Date(test.getStartMillis()) + test.getName() + "SCREENSHOT TAKEN : ");
+            Log.info(new Date(test.getStartMillis()) + test.getName() + "SCREENSHOT TAKEN : ");
         }
 
     }
@@ -86,7 +87,7 @@ public class Listeners extends CommonOps implements ITestListener {
         if (isMobile())
             return ((TakesScreenshot)mobileDriver).getScreenshotAs(OutputType.BYTES);
         else
-            Logger.getLogger("ScreenShot taken!");
+            Log.info("ScreenShot taken!");
         return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 
     }

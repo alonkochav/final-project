@@ -32,7 +32,7 @@ public class MonteScreenRecorder extends ScreenRecorder {
         else if (!movieFolder.isDirectory()) {
             throw new IOException("\"" + movieFolder + "\" is not a directory.");
         } else
-        Logger.getLogger("Recorded Screen Cast File is Now Created");
+        Log.info("Recorded Screen Cast File is Now Created");
         return new File(movieFolder,
                 name + "." + Registry.getInstance().getExtension(fileFormat));
     }
@@ -58,6 +58,6 @@ public class MonteScreenRecorder extends ScreenRecorder {
 
     public static void stopRecord() throws Exception {
         screenRecorder.stop();
-        Logger.getLogger("Recorded Screen Cast File Stop Recording");
+        Log.info("Recorded Screen Cast File Stop Recording");
     }
 }
