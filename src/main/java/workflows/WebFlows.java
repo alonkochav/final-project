@@ -33,24 +33,24 @@ public class WebFlows extends CommonOps {
     @Step("Business Flow: show Users")
     public static void showUsers()
     {
-        UIActions.mouseHover( grafanaLeftMenu.btn_server,grafanaServerAdmin.link_users);
+        UIActions.mouseHover(grafanaLeftMenu.getBtn_server(),grafanaServerAdmin.link_users);
     }
 
     @Step("Business Flow: Create New User")
     public static void createNewUser(String name, String email, String username, String pass){
         UIActions.click(grafanaServerAdminMain.btn_newUser);
-        UIActions.updateText(grafanaAddNewUser.txt_name, name);
-        UIActions.updateText(grafanaAddNewUser.txt_email, email);
-        UIActions.updateText(grafanaAddNewUser.txt_username, username);
-        UIActions.updateText(grafanaAddNewUser.txt_password, pass);
-        UIActions.click(grafanaAddNewUser.btn_create);
+        UIActions.updateText(grafanaAddNewUser.getTxt_name(), name);
+        UIActions.updateText(grafanaAddNewUser.getTxt_email(), email);
+        UIActions.updateText(grafanaAddNewUser.getTxt_username(), username);
+        UIActions.updateText(grafanaAddNewUser.getTxt_password(), pass);
+        UIActions.click(grafanaAddNewUser.getBtn_create());
     }
 
     @Step("Business Flow: Delete last user")
     public static void deleteLastUser(){
         UIActions.click(grafanaServerAdminMain.row);
-        UIActions.click(grafanaEditUser.btn_deleteUser);
-        UIActions.click(grafanaEditUser.btn_confirmDeleteUser);
+        UIActions.click(grafanaEditUser.getBtn_deleteUser());
+        UIActions.click(grafanaEditUser.getBtn_confirmDeleteUser());
     }
 
     @Step("Business Flow: Search and Verify User")

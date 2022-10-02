@@ -8,7 +8,7 @@ import org.sikuli.script.*;
 import utilities.CommonOps;
 
 import java.util.List;
-import org.apache.log4j.Logger;
+
 import utilities.Log;
 
 import static org.testng.Assert.*;
@@ -48,7 +48,7 @@ public class Verifications extends CommonOps {
     @Step("Verify Element Visually")
     public static void  visualElement(String expectedImageName){
         try{
-            wait.until(ExpectedConditions.visibilityOf(grafanaLeftMenu.btn_home));
+            wait.until(ExpectedConditions.visibilityOf(grafanaLeftMenu.getBtn_home()));
             screen.find(getData("ImageRepo")+expectedImageName+".png");
         } catch (FindFailed findFailed){
             Log.info("Error comparing Image File " + findFailed);
