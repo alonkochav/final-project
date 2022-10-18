@@ -14,7 +14,7 @@ public class TestGrafanaWebDB extends CommonOps {
     public void test01_loginDBAndVerifyHeader(){
         WebFlows.loginDB();
 //        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Alon ");      // FAIL TEST
-        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
+        Verifications.verifyTextInElement(grafanaMain.getHead_Dashboard(),"Welcome to Grafana");
     }
 
     @Test (description = "Test 02 - Verify Default Users")
@@ -22,6 +22,6 @@ public class TestGrafanaWebDB extends CommonOps {
     public void test02_verifyDefaultUsers(){
         WebFlows.showUsers();
 //        Verifications.numberOfElements(grafanaServerAdminMain.rows,99);      // FAIL TEST
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+        Verifications.numberOfElements(grafanaServerAdminMain.getRows(),1);
     }
 }

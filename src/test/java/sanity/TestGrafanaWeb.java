@@ -22,7 +22,7 @@ public class TestGrafanaWeb extends CommonOps {
     @Description ("This Test logs in and verifies the main header")
     public void test01_verifyHeader(){
         WebFlows.login(getData("username"),getData("password"));
-        Verifications.verifyTextInElement(grafanaMain.head_Dashboard,"Welcome to Grafana");
+        Verifications.verifyTextInElement(grafanaMain.getHead_Dashboard(),"Welcome to Grafana");
     }
 
     @Test (description = "Test 02 - Verify Default Users")
@@ -30,7 +30,7 @@ public class TestGrafanaWeb extends CommonOps {
     public void test02_verifyDefaultUsers(){
         WebFlows.showUsers();
 //        Verifications.numberOfElements(grafanaServerAdminMain.rows,99);      // FAIL TEST
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+        Verifications.numberOfElements(grafanaServerAdminMain.getRows(),1);
     }
 
     @Test (description= "Test 03 - Verify New Users")
@@ -39,7 +39,7 @@ public class TestGrafanaWeb extends CommonOps {
         WebFlows.showUsers();
         WebFlows.createNewUser("Digital", "digital@web.com", "digiweb", "12345678");
 //        Verifications.numberOfElements(grafanaServerAdminMain.rows,99); // FAIL TEST
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,2);
+        Verifications.numberOfElements(grafanaServerAdminMain.getRows(),2);
     }
 
     @Test (description = "Test 04 - Verify User Deletion")
@@ -49,15 +49,15 @@ public class TestGrafanaWeb extends CommonOps {
         WebFlows.deleteLastUser();
         WebFlows.showUsers();
 //        Verifications.numberOfElements(grafanaServerAdminMain.rows,44);  // FAIL TEST
-        Verifications.numberOfElements(grafanaServerAdminMain.rows,1);
+        Verifications.numberOfElements(grafanaServerAdminMain.getRows(),1);
     }
 
     @Test (description = "Test 05 - Verify progress steps")
     @Description ("This Test verifies the progress steps are visible on main page using soft Assertion")
     public void test05_verifyProgressSteps(){
         List<WebElement> listOfAllWebElements = new ArrayList<>();
-        listOfAllWebElements.add(grafanaMain.head_progressSteps);
-        listOfAllWebElements.addAll(grafanaMain.list_progressSteps);
+        listOfAllWebElements.add(grafanaMain.getHead_progressSteps());
+        listOfAllWebElements.addAll(grafanaMain.getList_progressSteps());
         Verifications.visibilityOfElements(listOfAllWebElements);
     }
 

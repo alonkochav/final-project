@@ -7,11 +7,11 @@ public class MobileFlows extends utilities.CommonOps {
 
     @Step("Business Flow : Fill Form And Calculate Mortgage")
     public static void calculateMortgage(String amount, String term, String rate){
-        MobileActions.updateText(mortgageMain.txt_amount, amount);
-        MobileActions.updateText(mortgageMain.txt_term, term);
-        MobileActions.updateText(mortgageMain.txt_rate, rate);
-        MobileActions.tap(mortgageMain.btn_calculate);
-        MobileActions.tap(mortgageMain.txt_repayment);
+        MobileActions.updateText(mortgageMain.getTxt_amount(), amount);
+        MobileActions.updateText(mortgageMain.getTxt_term(), term);
+        MobileActions.updateText(mortgageMain.getTxt_rate(), rate);
+        MobileActions.tap(mortgageMain.getBtn_calculate());
+        MobileActions.tap(mortgageMain.getTxt_repayment());
 
     }
 

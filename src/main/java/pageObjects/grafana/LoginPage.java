@@ -6,14 +6,35 @@ import org.openqa.selenium.support.How;
 
 public class LoginPage {
     @FindBy(how = How.NAME, using = "user")
-    public WebElement txt_username;
+    private WebElement txt_username;
 
     @FindBy(how = How.NAME, using = "password")
-    public WebElement txt_password;
+    private WebElement txt_password;
 
     @FindBy(how = How.CSS, using = "button[type='submit']")
-    public WebElement btn_login ;
+    private WebElement btn_login ;
 
     @FindBy(how = How.CSS, using = "form div:nth-of-type(3) div:nth-of-type(2) button")
-    public WebElement btn_skip;
+    private WebElement btn_skip;
+
+    public WebElement getTxt_username() {
+        return txt_username;
+    }
+
+    public WebElement getTxt_password() {
+        return txt_password;
+    }
+
+    public WebElement getBtn_login() {
+        return btn_login;
+    }
+
+    public void setBtn_login(WebElement btn_login) {
+        this.btn_login = btn_login;
+    }
+
+    public WebElement getBtn_skip() {
+        return btn_skip;
+    }
+
 }

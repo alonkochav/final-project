@@ -17,7 +17,7 @@ public class TestTodoListElectron extends CommonOps {
     @Description("This Test Adds a New Tasks and Verifies it in the List of Tasks")
     public void test01_addAndVerifyNewTask(){
         ElectronFlows.addNewTask("Learn Java");
-        Verifications.numberOfElements(todoMain.list_tasks,1);
+        Verifications.numberOfElements(todoMain.getList_tasks(),1);
         Uninterruptibles.sleepUninterruptibly(2,TimeUnit.SECONDS);
     }
 
@@ -27,7 +27,7 @@ public class TestTodoListElectron extends CommonOps {
         ElectronFlows.addNewTask("Learn Java");
         ElectronFlows.addNewTask("Learn C#");
         ElectronFlows.addNewTask("Learn Python");
-        Verifications.numberOfElements(todoMain.list_tasks,3);
+        Verifications.numberOfElements(todoMain.getList_tasks(),3);
     }
 
 }

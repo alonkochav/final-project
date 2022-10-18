@@ -17,8 +17,8 @@ public class TestCalculatorDesktop extends CommonOps {
     @Description("This Test Verifies the Addition Operation")
     public void test01_verifyAdditionOperation() {
         try {
-            double a = 100000.12345;
-            double b =  930_000;
+            double a = 200.12345;
+            double b =  93;
             double res = a + b;
             String exp = new DecimalFormat("#,###.##########").format(res);
             DesktopFlows.calculateAddition(a, b);

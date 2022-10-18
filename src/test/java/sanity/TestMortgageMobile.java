@@ -18,6 +18,6 @@ public class TestMortgageMobile extends CommonOps {
     @Test
     public void test01_verifyMortgage() {
         MobileFlows.calculateMortgage("1000", "3", "4");
-        Verifications.verifyTextInMobileElement(mortgageMain.txt_repayment,"£30.03");
+        Verifications.verifyTextInMobileElement(mortgageMain.getTxt_repayment(),"£30.03");
     }
 }

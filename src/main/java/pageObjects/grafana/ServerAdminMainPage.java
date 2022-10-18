@@ -9,15 +9,31 @@ import java.util.List;
     public class ServerAdminMainPage  extends ServerAdminMenuPage {
 
     @FindBy(how = How.CSS, using = ".admin-list-table table tbody tr")
-    public List<WebElement> rows;
+    private List<WebElement> rows;
 
     @FindBy(how = How.CSS, using = ".admin-list-table table tbody tr:last-of-type a")
-    public WebElement row;
+    private WebElement row;
 
     @FindBy(how = How.CSS, using = ".page-action-bar a")
-    public WebElement btn_newUser;
+    private WebElement btn_newUser;
 
     @FindBy(how = How.CSS, using = "input[placeholder='Search user by login, email, or name.']")
-    public WebElement txt_search;
+    private WebElement txt_search;
+
+        public List<WebElement> getRows() {
+            return rows;
+        }
+
+        public WebElement getRow() {
+            return row;
+        }
+
+        public WebElement getBtn_newUser() {
+            return btn_newUser;
+        }
+
+        public WebElement getTxt_search() {
+            return txt_search;
+        }
 
     }

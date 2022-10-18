@@ -51,7 +51,14 @@ public class CommonOps extends Base {
         return platform.equalsIgnoreCase("desktop");
     }
 
-
+    /**
+     * ##############################################################################################
+     * Method Name: getData
+     * Method Description: This method gets the data from the xml configuration file
+     * Method Parameters: String
+     * Method Return: String
+     * #################################################################################
+     **/
     public static String getData(String nodeName) {
         File fXmlFile;
         DocumentBuilder dBuilder;
@@ -70,6 +77,15 @@ public class CommonOps extends Base {
         }
         return doc.getElementsByTagName(nodeName).item(0).getTextContent();
     }
+
+    /**
+     * ##############################################################################################
+     * Method Name: initBrowser
+     * Method Description: This method gets the browser type while using the web platform
+     * Method Parameters: String
+     * Method Return: void
+     * #################################################################################
+     **/
 
     public void initBrowser(String browserType) {
         if (browserType.equalsIgnoreCase("chrome"))
@@ -90,24 +106,55 @@ public class CommonOps extends Base {
         ManagePages.initGrafana();
     }
 
+    /**
+     * ##############################################################################################
+     * Method Name: initChromeDriver
+     * Method Description: This method gets the Chrome browser using the web platform
+     * Method Parameters: None
+     * Method Return: WebDriver
+     * #################################################################################
+     **/
     public static WebDriver initChromeDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         return driver;
     }
-
+    /**
+     * ##############################################################################################
+     * Method Name: initFirefoxDriver
+     * Method Description: This method gets the Firefox browser using the web platform
+     * Method Parameters: None
+     * Method Return: WebDriver
+     * #################################################################################
+     **/
     public static WebDriver initFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         return driver;
     }
 
+    /**
+     * ##############################################################################################
+     * Method Name: initIEDriver
+     * Method Description: This method gets the Internet Explorer browser using the web platform
+     * Method Parameters: None
+     * Method Return: WebDriver
+     * #################################################################################
+     **/
     public static WebDriver initIEDriver() {
         WebDriverManager.iedriver().setup();
         driver = new InternetExplorerDriver();
         return driver;
     }
 
+    /**
+     * ##############################################################################################
+     * Method Name: initMobile
+     * Method Description: This method runs the Appium server using the mobile platform
+     * Method Parameters: None
+     * Method Return: void
+     * #################################################################################
+     **/
     // Mobile driver methods
     public static void initMobile(){
         dc.setCapability(MobileCapabilityType.UDID, getData("UDID"));
@@ -123,13 +170,27 @@ public class CommonOps extends Base {
         wait = new WebDriverWait(mobileDriver, Long.parseLong(getData("Timeout")));
         ManagePages.initMortgage();
     }
-
+    /**
+     * ##############################################################################################
+     * Method Name: initAPI
+     * Method Description: This method runs the API platform using Rest Assured
+     * Method Parameters: None
+     * Method Return: void
+     * #################################################################################
+     **/
     //   Rest API
-
     public static void initAPI() {
         RestAssured.baseURI = getData("urlAPI");
         httpRequest = RestAssured.given().auth().preemptive().basic(getData("username"),getData("password"));
     }
+    /**
+     * ##############################################################################################
+     * Method Name: initElectron
+     * Method Description: This method runs the Electron platform using the Electron Driver
+     * Method Parameters: None
+     * Method Return: void
+     * #################################################################################
+     **/
 
     //  Electron Driver
     public static void initElectron() {
@@ -144,6 +205,14 @@ public class CommonOps extends Base {
         ManagePages.initToDo();
     }
 
+    /**
+     * ##############################################################################################
+     * Method Name: initDesktop
+     * Method Description: This method runs the desktop platform using Windows Application Driver
+     * Method Parameters: None
+     * Method Return: void
+     * #################################################################################
+     **/
     public static void initDesktop() {
         dc.setCapability("app",getData("CalculatorApp"));
         try {
