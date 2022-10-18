@@ -17,6 +17,11 @@ public class UIActions extends CommonOps {
         elem.click();
     }
 
+    @Step("Click on Element Without Waiting")
+    public static void clickNoWait(WebElement elem) {
+        elem.click();
+    }
+
     @Step("Update Text Element")
     public static void updateText(WebElement elem, String text) {
         wait.until(ExpectedConditions.visibilityOf(elem));

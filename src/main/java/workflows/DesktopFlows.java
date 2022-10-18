@@ -2,7 +2,6 @@ package workflows;
 
 import extensions.UIActions;
 import io.qameta.allure.Step;
-import org.python.antlr.ast.Num;
 import utilities.CommonOps;
 import utilities.Log;
 
@@ -10,96 +9,87 @@ import java.util.LinkedList;
 
 public class DesktopFlows extends CommonOps {
 
+    @Step("Count digits in input")
+    public static int getCountOfDouble(double n) {
+        int count = getDigitsOfDouble(n)[0].length();
+        return count;
+    }
+
+    @Step("Count digits in input")
+    public static int getCountOfFraction(double n) {
+        int count = getDigitsOfDouble(n)[1].length();
+        return count;
+    }
+
+    @Step("Return digits of input as String Array")
+    public static String[] getDigitsOfDouble(double n) {
+        String[] nString = Double.toString(n).split("\\.");
+        return nString;
+    }
+
+    @Step("Return digits of input as String Array")
+    public static String[] getFractions(double n) {
+        String[] nString = Double.toString(n).split("\\.");
+        return nString;
+    }
+
+    public static void digitByDigit(double n) {
+        for (int i = 0; i < getCountOfDouble(n); i++) {
+            getCalcButtonObjects(getDigitsOfDouble(n)[0].toCharArray()[i]);
+        }
+        if (n % 1 != 0) {
+            UIActions.clickNoWait(calcMain.getBtnPoint());
+            for (int i = 0; i < getCountOfFraction(n); i++) {
+                getCalcButtonObjects(getDigitsOfDouble(n)[1].charAt(i));
+            }
+        }
+        if (n<0) {
+            UIActions.clickNoWait(calcMain.getBtnPolarity());
+        }
+    }
+
     @Step("Calculate input operation of two numbers: a ? b ")
-    public static void calculateAny(int a, char o, int b) {
-        UIActions.click(calcMain.getBtnClear());
-
-        if (getDigits(a).size() == 1) {
-            getCalcButtonObjects(a);
-        } else {
-            getMultipleDigits(a);
-        }
+    public static void calculateAny(double a, char o, double b) {
+        UIActions.clickNoWait(calcMain.getBtnClear());
+        digitByDigit(a);
         getCalcButtonOperations(o);
-
-        if (getDigits(b).size() == 1) {
-            getCalcButtonObjects(b);
-        } else {
-            getMultipleDigits(b);
-        }
-
-        UIActions.click(calcMain.getBtnEquals());
-
-        Log.info(calcMain.getFieldResult().getText());
-    }
-
-    @Step("Calculate Addition of two numbers: a + b ")
-    public static void calculateAddition(int a, int b) {
-        Log.info("Integer a is " + a);
-        Log.info("Integer b is "+ b);
-        calculateAny(a,'+',b);
-    }
-
-    @Step("Calculate Subtraction of two numbers: a - b ")
-    public static void calculateSubtraction(int a, int b) {
-        Log.info("Integer a is " + a);
-        Log.info("Integer b is "+ b);
-        calculateAny(a,'-',b);
-
-    }
-
-    @Step("Calculate Multiplication of two numbers: a * b ")
-    public static void calculateMultiplication(int a, int b) {
-        Log.info("Integer a is " + a);
-        Log.info("Integer b is "+ b);
-        calculateAny(a,'*',b);
-
-    }
-
-    @Step("Calculate Division of two numbers: a / b ")
-     public static void calculateDivision(int a, int b) {
-        Log.info("Integer a is " + a);
-        Log.info("Integer b is "+ b);
-        calculateAny(a,'/',b);
-
+        digitByDigit(b);
+        UIActions.clickNoWait(calcMain.getBtnEquals());
     }
 
     @Step("Retrieve number digit and click relative button")
-    public static void getCalcButtonObjects(int n) {
+    public static void getCalcButtonObjects(char n) {
         switch (n) {
-            case 0:
-                UIActions.click(calcMain.getBtnZero());
+            case '0':
+                UIActions.clickNoWait(calcMain.getBtnZero());
                 break;
-            case 1:
-                UIActions.click(calcMain.getBtnOne());
+            case '1':
+                UIActions.clickNoWait(calcMain.getBtnOne());
                 break;
-            case 2:
-                UIActions.click(calcMain.getBtnTwo());
+            case '2':
+                UIActions.clickNoWait(calcMain.getBtnTwo());
                 break;
-            case 3:
-                UIActions.click(calcMain.getBtnThree());
+            case '3':
+                UIActions.clickNoWait(calcMain.getBtnThree());
                 break;
-            case 4:
-                UIActions.click(calcMain.getBtnFour());
+            case '4':
+                UIActions.clickNoWait(calcMain.getBtnFour());
                 break;
-            case 5:
-                UIActions.click(calcMain.getBtnFive());
+            case '5':
+                UIActions.clickNoWait(calcMain.getBtnFive());
                 break;
-            case 6:
-                UIActions.click(calcMain.getBtnSix());
+            case '6':
+                UIActions.clickNoWait(calcMain.getBtnSix());
                 break;
-            case 7:
-                UIActions.click(calcMain.getBtnSeven());
+            case '7':
+                UIActions.clickNoWait(calcMain.getBtnSeven());
                 break;
-            case 8:
-                UIActions.click(calcMain.getBtnEight());
+            case '8':
+                UIActions.clickNoWait(calcMain.getBtnEight());
                 break;
-            case 9:
-                UIActions.click(calcMain.getBtnNine());
+            case '9':
+                UIActions.clickNoWait(calcMain.getBtnNine());
                 break;
-            case '.':
-                UIActions.click(calcMain.getBtnPoint());
-                break;
-                // Default case
             default:
                 Log.info("Not found");
                 break;
@@ -110,16 +100,16 @@ public class DesktopFlows extends CommonOps {
     public static void getCalcButtonOperations(char o) {
         switch (o) {
             case '+':
-                UIActions.click(calcMain.getBtnPlus());
+                UIActions.clickNoWait(calcMain.getBtnPlus());
                 break;
             case '-':
-                UIActions.click(calcMain.getBtnMinus());
+                UIActions.clickNoWait(calcMain.getBtnMinus());
                 break;
             case '*':
-                UIActions.click(calcMain.getBtnMultiply());
+                UIActions.clickNoWait(calcMain.getBtnMultiply());
                 break;
             case '/':
-                UIActions.click(calcMain.getBtnDivide());
+                UIActions.clickNoWait(calcMain.getBtnDivide());
                 break;
 
             // Default case
@@ -128,42 +118,34 @@ public class DesktopFlows extends CommonOps {
         }
     }
 
-    @Step("Check if character is Numeric digit")
-    public static boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch(NumberFormatException e){
-            return false;
-        }
+    @Step("Calculate Addition of two numbers: a + b ")
+    public static void calculateAddition(double a, double b) {
+        Log.info("Double a is " + a);
+        Log.info("Double b is "+ b);
+        calculateAny(a, '+', b);
     }
 
-
-    @Step("Retrieve multiple digits as stack of input number")
-    public static LinkedList<Integer> getDigits(int n){
-        LinkedList<Integer> stack = new LinkedList<>();
-
-        System.out.println(isNumeric(Integer.toString(n)));
-
-        while (n > 0){
-            stack.push(n % 10);
-            n = n / 10;
-        }
-         return stack;
+    @Step("Calculate Subtraction of two numbers: a - b ")
+    public static void calculateSubtraction(double a, double b) {
+        Log.info("Double a is " + a);
+        Log.info("Double b is "+ b);
+        calculateAny(a,'-',b);
     }
 
-    @Step("Create and pop stack of the LinkedList of multiple digits")
-    public static LinkedList<Integer>  getMultipleDigits(int n){
-        LinkedList<Integer> stack = getDigits(n);
-
-        while (!stack.isEmpty()){
-            getCalcButtonObjects(stack.getFirst());
-            stack.pop();
-
-        }
-        return stack;
+    @Step("Calculate Multiplication of two numbers: a * b ")
+    public static void calculateMultiplication(double a, double b) {
+        Log.info("Double a is " + a);
+        Log.info("Double b is "+ b);
+        calculateAny(a,'*',b);
 
     }
 
+    @Step("Calculate Division of two numbers: a / b ")
+    public static void calculateDivision(double a, double b) {
+        Log.info("Double a is " + a);
+        Log.info("Double b is "+ b);
+        calculateAny(a,'/',b);
+
+    }
 
 }
